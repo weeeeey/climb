@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/select';
 import { ControllerRenderProps } from 'react-hook-form';
 import { MyFiledValues } from './new-types';
+import { useEffect, useState } from 'react';
 
 interface NewSelectProps {
     contents: string[] | object;
@@ -28,6 +29,18 @@ export const NewSelect = ({
     field,
     name,
 }: NewSelectProps) => {
+    const [defaultValue, setDefaultValue] = useState('');
+    useEffect(() => {
+        if (name === 'cate') {
+            if (initialCate) {
+                setDefaultValue(initialCate);
+            }
+            if (initialSub) {
+                setDefaultValue(initialSub);
+            }
+        }
+    }, [name, initialCate, initialSub]);
+
     return (
         <FormItem>
             <FormLabel>{name === 'cate' ? '카테고리' : '게시판'}</FormLabel>

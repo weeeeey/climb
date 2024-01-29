@@ -4,6 +4,7 @@ import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { FormControl, FormField, FormItem, FormLabel } from '../ui/form';
 import { MyFiledValues } from './new-types';
+import { EditorProvider } from '../editor/editor-provider';
 
 interface NewSelectProps {
     control: Control<MyFiledValues>;
@@ -20,6 +21,7 @@ export const NewEditor = ({ control }: NewSelectProps) => {
                         <FormLabel>제목</FormLabel>
                         <FormControl>
                             <Input
+                                className="px-3 py-5  "
                                 placeholder="제목을 입력해주세요."
                                 {...field}
                             />
@@ -34,11 +36,7 @@ export const NewEditor = ({ control }: NewSelectProps) => {
                     <FormItem>
                         <FormLabel>내용</FormLabel>
                         <FormControl>
-                            <Textarea
-                                placeholder="내용을 입력해주세요."
-                                className="resize-none h-72 "
-                                {...field}
-                            />
+                            <EditorProvider field={field} />
                         </FormControl>
                     </FormItem>
                 )}
