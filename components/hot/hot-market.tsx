@@ -1,5 +1,5 @@
-import React from 'react';
+import { HotBody } from './hot-body';
 
 export const HotMarket = () => {
-    return <div>HotMarket</div>;
+    return <HotBody title="마켓" url="market" text="마켓 글" />;
 };

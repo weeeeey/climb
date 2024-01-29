@@ -3,13 +3,12 @@ import NavBody from './nav-body';
 import { NavLogo } from './nav-logo';
 import { NavUser } from './nav-user';
 import currentProfile from '@/action/current-profile';
-import { currentUser } from '@clerk/nextjs';
 
 const NavBar = async () => {
     const isLogin = await currentProfile();
 
     return (
-        <nav className="flex justify-between items-center px-2 sm:px-10">
+        <nav className="flex justify-between items-center px-2 sm:px-10 shadow-slate-300 shadow-lg">
             <NavLogo />
             <NavBody />
             <NavUser isLogin={isLogin.id ? true : false} />

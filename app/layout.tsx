@@ -5,6 +5,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 import NavBar from '@/components/nav/nav-bar';
 import { siteConfig } from '@/config/site';
 import { TopButton } from '@/components/ui/topButton';
+import QueryProvider from '@/provider/query-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -28,16 +29,18 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <ClerkProvider>
-            <html lang="en">
-                <body className={inter.className}>
-                    <NavBar />
-                    <main className="px-10 sm:px-20 pt-5 bg-slate-100 w-full h-full">
-                        {children}
-                    </main>
-                    <TopButton />
-                </body>
-            </html>
-        </ClerkProvider>
+        <QueryProvider>
+            <ClerkProvider>
+                <html lang="en">
+                    <body className={inter.className}>
+                        <NavBar />
+                        <main className="px-10 sm:px-20 pt-5 w-full pb-20">
+                            {children}
+                        </main>
+                        <TopButton />
+                    </body>
+                </html>
+            </ClerkProvider>
+        </QueryProvider>
     );
 }

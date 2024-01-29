@@ -8,7 +8,7 @@ import {
 
 const HomePage = async () => {
     return (
-        <div className="flex flex-col justify-center items-start gap-y-10">
+        <div className="flex flex-col justify-center items-start gap-y-10 ">
             <HotBillboard />
             <HotCrew />
             <HotCommu />

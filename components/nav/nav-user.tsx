@@ -1,7 +1,6 @@
 import { navFont } from '@/font.config';
 import { cn } from '@/lib/utils';
 import { UserButton } from '@clerk/nextjs';
-import { Profile } from '@prisma/client';
 import Link from 'next/link';
 import React from 'react';
 
@@ -10,6 +9,9 @@ interface NavUserProps {
 }
 
 export const NavUser = ({ isLogin }: NavUserProps) => {
+    if (isLogin) {
+        return <UserButton />;
+    }
     return (
         <Link
             href="/sign-in"
