@@ -3,13 +3,7 @@ import { Control } from 'react-hook-form';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { FormControl, FormField, FormItem, FormLabel } from '../ui/form';
-
-interface MyFiledValues {
-    category: string;
-    subCategory: string;
-    title: string;
-    content: string;
-}
+import { MyFiledValues } from './new-types';
 
 interface NewSelectProps {
     control: Control<MyFiledValues>;

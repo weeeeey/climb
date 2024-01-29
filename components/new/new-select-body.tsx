@@ -2,27 +2,13 @@ import { Control } from 'react-hook-form';
 import { FormField } from '@/components/ui/form';
 
 import { NewSelect } from './new-select';
-
-interface MyFiledValues {
-    category: string;
-    subCategory: string;
-    title: string;
-    content: string;
-}
+import { MyFiledValues, categories, subCategories } from './new-types';
 
 interface NewSelectProps {
     urlCategory: string | null;
     urlSubCategory: string | null;
     control: Control<MyFiledValues>;
 }
-
-const categories = ['crew', 'market', 'community', 'review'];
-const subCategories = {
-    crew: ['oneTimeMeeting', 'recruit', 'introduce'],
-    market: [],
-    community: ['tip', 'information', 'humor', 'lost'],
-    review: ['spot', 'equipment'],
-};
 
 export const NewSelectBody = ({
     urlCategory,

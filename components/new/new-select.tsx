@@ -9,13 +9,7 @@ import {
     SelectValue,
 } from '@/components/ui/select';
 import { ControllerRenderProps } from 'react-hook-form';
-
-interface MyFiledValues {
-    category: string;
-    subCategory: string;
-    title: string;
-    content: string;
-}
+import { MyFiledValues } from './new-types';
 
 interface NewSelectProps {
     contents: string[] | object;
