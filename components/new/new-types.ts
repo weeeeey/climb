@@ -1,3 +1,5 @@
+import { ControllerRenderProps } from 'react-hook-form';
+
 export interface MyFiledValues {
     category: string;
     subCategory: string;
@@ -12,3 +14,7 @@ export const subCategories = {
     community: ['tip', 'information', 'humor', 'lost'],
     review: ['spot', 'equipment'],
 };
+
+export interface EditorProvideProps {
+    field: ControllerRenderProps<MyFiledValues, 'content'>;
+}

@@ -1,18 +1,12 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { EditorProvideProps, MyFiledValues } from '../new/new-types';
 
-interface EditorQuillProps {
-    htmlContent: string;
-    setHtmlContent: React.Dispatch<React.SetStateAction<string>>;
-}
-
-export const EditorQuill = ({
-    htmlContent,
-    setHtmlContent,
-}: EditorQuillProps) => {
+export const EditorQuill = ({ field }: EditorProvideProps) => {
     const quillModules = useMemo(
         () => ({
             toolbar: {
@@ -35,11 +29,24 @@ export const EditorQuill = ({
         }),
         []
     );
+    const [isMount, setIsMount] = useState(false);
+    useEffect(() => {
+        setIsMount(true);
+
+        return () => {
+            setIsMount(false);
+        };
+    }, []);
+
+    if (!isMount) {
+        return null;
+    }
+
     return (
         <>
             <ReactQuill
-                value={htmlContent}
-                onChange={setHtmlContent}
+                value={field.value}
+                onChange={field.onChange}
                 modules={quillModules}
                 theme="snow"
                 className="h-[20rem] md:h-[30rem]"

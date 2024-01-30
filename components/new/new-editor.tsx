@@ -1,7 +1,6 @@
 import React from 'react';
 import { Control } from 'react-hook-form';
 import { Input } from '../ui/input';
-import { Textarea } from '../ui/textarea';
 import { FormControl, FormField, FormItem, FormLabel } from '../ui/form';
 import { MyFiledValues } from './new-types';
 import { EditorProvider } from '../editor/editor-provider';
@@ -23,7 +22,8 @@ export const NewEditor = ({ control }: NewSelectProps) => {
                             <Input
                                 className="px-3 py-5  "
                                 placeholder="제목을 입력해주세요."
-                                {...field}
+                                value={field.value || ''}
+                                onChange={field.onChange}
                             />
                         </FormControl>
                     </FormItem>

@@ -1,21 +1,47 @@
 'use client';
-import React, { useState } from 'react';
-import { EditorQuill } from './editor-quill';
-import { ControllerRenderProps } from 'react-hook-form';
-import { MyFiledValues } from '../new/new-types';
 
-interface EditorProvideProps {
-    field: ControllerRenderProps<MyFiledValues, 'content'>;
-}
+import { useMemo } from 'react';
+
+import 'react-quill/dist/quill.snow.css';
+import { EditorProvideProps } from '../new/new-types';
+import dynamic from 'next/dynamic';
 
 export const EditorProvider = ({ field }: EditorProvideProps) => {
-    const [htmlContent, setHtmlContent] = useState('');
+    const ReactQuill = useMemo(
+        () => dynamic(() => import('react-quill'), { ssr: false }),
+        []
+    );
+    const quillModules = useMemo(
+        () => ({
+            toolbar: {
+                container: [
+                    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                    [
+                        { size: ['small', false, 'large', 'huge'] },
+                        { color: [] },
+                    ],
+                    [
+                        { list: 'ordered' },
+                        { list: 'bullet' },
+                        { indent: '-1' },
+                        { indent: '+1' },
+                        { align: [] },
+                    ],
+                    ['image', 'video'],
+                ],
+            },
+        }),
+        []
+    );
 
     return (
         <>
-            <EditorQuill
-                htmlContent={htmlContent}
-                setHtmlContent={setHtmlContent}
+            <ReactQuill
+                value={field.value}
+                onChange={field.onChange}
+                modules={quillModules}
+                theme="snow"
+                className="h-[20rem] md:h-[30rem]"
             />
         </>
     );

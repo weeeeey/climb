@@ -14,7 +14,7 @@ import { Form } from '@/components/ui/form';
 const FormSchema = z.object({
     category: z.string(),
     subCategory: z.string(),
-    title: z.string().default('aaa'),
+    title: z.string().min(5, '제목은 5글자 이상으로 작성해주세요'),
     content: z.string().default('aaa'),
 });
 
