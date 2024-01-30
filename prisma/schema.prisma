@@ -15,27 +15,6 @@ enum UserRole {
   User
 }
 
-enum CategoryName {
-  Crew
-  Market
-  Community
-  Review
-}
-
-enum SubCategoryName {
-  OneTimeMeeting
-  Recruit
-  Introduce
-
-  Tip
-  Information
-  Humor
-  Lost
-
-  Spot
-  Equipment
-}
-
 model Profile {
   id String @id @default(auto()) @map("_id") @db.ObjectId() 
   userId String @unique
@@ -83,16 +62,18 @@ model Post {
 
 model Category {
   id String @id @default(auto()) @map("_id") @db.ObjectId()
-  name CategoryName
+  name String
   subCategories SubCategory[]
   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@unique([name])
 }
 
 model SubCategory {
   id String @id @default(auto()) @map("_id") @db.ObjectId()
-  name SubCategoryName
+  name String
   posts Post[]
   
   categoryId String @db.ObjectId
@@ -101,6 +82,7 @@ model SubCategory {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   @@index([categoryId])
+  @@unique([name])
 }
 
 

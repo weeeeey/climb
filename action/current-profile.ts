@@ -1,7 +1,8 @@
 import { auth, redirectToSignIn, currentUser } from '@clerk/nextjs';
 import { db } from '../lib/db';
+import { Profile } from '@prisma/client';
 
-const currentProfile = async () => {
+const currentProfile = async (): Promise<Profile | undefined> => {
     try {
         const { userId } = auth();
         if (!userId) {
@@ -28,7 +29,7 @@ const currentProfile = async () => {
                 },
             });
         }
-        return currentProfile!;
+        return currentProfile;
     } catch (error) {
         console.log(error);
     }

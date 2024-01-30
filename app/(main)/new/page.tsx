@@ -4,41 +4,65 @@ import { NewEditor } from '@/components/new/new-editor';
 import { NewSelectBody } from '@/components/new/new-select-body';
 import { NewTitle } from '@/components/new/new-title';
 import { NewUploadButton } from '@/components/new/new-uploadButton';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { useSearchParams } from 'next/navigation';
-import { useForm } from 'react-hook-form';
+
+import axios from 'axios';
 
 import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Form } from '@/components/ui/form';
+import { FieldErrors, useForm } from 'react-hook-form';
+import { MyFiledValues } from '@/components/new/new-types';
 
 const FormSchema = z.object({
-    category: z.string(),
+    category: z.string().min(1),
     subCategory: z.string(),
     title: z.string().min(5, '제목은 5글자 이상으로 작성해주세요'),
-    content: z.string().default('aaa'),
+    content: z.string().min(1),
 });
 
 const NewPpage = () => {
-    const searchParams = useSearchParams();
-    const urlCategory = searchParams.get('category');
-    const urlSubCategory = searchParams.get('subCategory');
+    // const searchParams = useSearchParams();
+    // const urlCategory = searchParams.get('category');
+    // const urlSubCategory = searchParams.get('subCategory');
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
+
+        // defaultValues: {
+        //     subCategory: urlSubCategory ? urlSubCategory : '',
+        //     category: urlCategory ? urlCategory : '',
+        // },
     });
-    function onSubmit(data: z.infer<typeof FormSchema>) {
-        console.log(data);
+    async function onSubmit(data: z.infer<typeof FormSchema>) {
+        try {
+            const { category, content, subCategory, title } = data;
+
+            const res = await axios.post('/api/post', {
+                category,
+                title,
+                content,
+                subCategory,
+            });
+            if (res.status === 200) {
+                console.log(res.data);
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
 
+    function inValidSubmit(errors: FieldErrors<MyFiledValues>) {
+        console.log(errors);
+    }
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-10">
+            <form
+                onSubmit={form.handleSubmit(onSubmit, inValidSubmit)}
+                className="space-y-10"
+            >
                 <NewTitle number={1} text="카테고리를 골라주세요!" />
-                <NewSelectBody
-                    control={form.control}
-                    urlCategory={urlCategory}
-                    urlSubCategory={urlSubCategory}
-                />
+                <NewSelectBody control={form.control} />
                 <NewTitle number={2} text="어떤 내용을 공유하고 싶으신가요?" />
                 <NewEditor control={form.control} />
                 <NewUploadButton onClick={form.handleSubmit(onSubmit)} />

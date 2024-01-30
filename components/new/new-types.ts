@@ -18,3 +18,5 @@ export const subCategories = {
 export interface EditorProvideProps {
     field: ControllerRenderProps<MyFiledValues, 'content'>;
 }
+
+export type CategoryType = 'crew' | 'market' | 'community' | 'review';
