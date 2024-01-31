@@ -1,7 +1,7 @@
-import React from 'react';
+import { redirect } from 'next/navigation';
 
 const ReviewPage = () => {
-    return <div>ReviewPage</div>;
+    redirect('/review/spot');
 };
 
 export default ReviewPage;

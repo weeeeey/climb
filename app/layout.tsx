@@ -6,6 +6,7 @@ import NavBar from '@/components/nav/nav-bar';
 import { siteConfig } from '@/config/site';
 import { TopButton } from '@/components/ui/topButton';
 import QueryProvider from '@/provider/query-provider';
+import ToasterProvider from '@/provider/toast-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -33,6 +34,7 @@ export default function RootLayout({
             <ClerkProvider>
                 <html lang="en">
                     <body className={inter.className}>
+                        <ToasterProvider />
                         <NavBar />
                         <main className="px-10 sm:px-20 pt-5 w-full pb-20">
                             {children}

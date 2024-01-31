@@ -11,7 +11,7 @@ const NavBar = async () => {
         <nav className="flex justify-between items-center px-2 sm:px-10 shadow-slate-300 shadow-lg">
             <NavLogo />
             <NavBody />
-            <NavUser isLogin={isLogin.id ? true : false} />
+            <NavUser isLogin={isLogin?.id ? true : false} />
         </nav>
     );
 };

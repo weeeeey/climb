@@ -4,7 +4,7 @@ import { NewEditor } from '@/components/new/new-editor';
 import { NewSelectBody } from '@/components/new/new-select-body';
 import { NewTitle } from '@/components/new/new-title';
 import { NewUploadButton } from '@/components/new/new-uploadButton';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import axios from 'axios';
 
@@ -13,15 +13,17 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Form } from '@/components/ui/form';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { MyFiledValues } from '@/components/new/new-types';
+import toast from 'react-hot-toast';
 
 const FormSchema = z.object({
     category: z.string().min(1),
     subCategory: z.string(),
-    title: z.string().min(5, '제목은 5글자 이상으로 작성해주세요'),
+    title: z.string().min(2, '제목은 2글자 이상으로 작성해주세요'),
     content: z.string().min(1),
 });
 
 const NewPpage = () => {
+    const router = useRouter();
     // const searchParams = useSearchParams();
     // const urlCategory = searchParams.get('category');
     // const urlSubCategory = searchParams.get('subCategory');
@@ -45,7 +47,9 @@ const NewPpage = () => {
                 subCategory,
             });
             if (res.status === 200) {
-                console.log(res.data);
+                router.push(`/post/${res.data.id}`);
+                toast.success('Success');
+                router.refresh();
             }
         } catch (error) {
             console.log(error);

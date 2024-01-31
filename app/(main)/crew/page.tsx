@@ -1,7 +1,7 @@
-import React from 'react';
+import { redirect } from 'next/navigation';
 
 const CrewPage = () => {
-    return <div>CrewPage</div>;
+    redirect('/crew/recruit');
 };
 
 export default CrewPage;
