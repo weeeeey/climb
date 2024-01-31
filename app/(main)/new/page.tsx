@@ -14,6 +14,8 @@ import { Form } from '@/components/ui/form';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { MyFiledValues } from '@/components/new/new-types';
 import toast from 'react-hot-toast';
+import { useState } from 'react';
+import { Loading } from '@/components/loading';
 
 const FormSchema = z.object({
     category: z.string().min(1),
@@ -23,6 +25,7 @@ const FormSchema = z.object({
 });
 
 const NewPpage = () => {
+    const [isLoading, setisLoading] = useState(false);
     const router = useRouter();
     // const searchParams = useSearchParams();
     // const urlCategory = searchParams.get('category');
@@ -36,7 +39,11 @@ const NewPpage = () => {
         //     category: urlCategory ? urlCategory : '',
         // },
     });
+    if (isLoading) {
+        return <Loading />;
+    }
     async function onSubmit(data: z.infer<typeof FormSchema>) {
+        setisLoading(true);
         try {
             const { category, content, subCategory, title } = data;
 
@@ -53,6 +60,8 @@ const NewPpage = () => {
             }
         } catch (error) {
             console.log(error);
+        } finally {
+            setisLoading(false);
         }
     }
 

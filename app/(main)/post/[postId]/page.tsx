@@ -1,5 +1,6 @@
 'use client';
 
+import { PostBody } from '@/components/post/post-body';
 import { useQueryContent } from '@/lib/use-query-content';
 
 const PostIdPage = ({ params }: { params: { postId: string } }) => {
@@ -12,8 +13,8 @@ const PostIdPage = ({ params }: { params: { postId: string } }) => {
         cType: 'post',
         id: postId,
     });
-    console.log(post);
-    return <div>PostIdPage</div>;
+
+    return <PostBody post={post} />;
 };
 
 export default PostIdPage;
