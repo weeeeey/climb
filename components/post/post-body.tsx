@@ -7,6 +7,7 @@ import { Loading } from '../loading';
 import { PostLike } from './post-like';
 import { useQueryContent } from '@/lib/use-query-content';
 import { useEffect, useState } from 'react';
+import { ErrorPage } from '../error';
 
 interface PostBodyProps {
     postId: string;
@@ -33,7 +34,7 @@ export const PostBody = ({ postId, loginedProfile }: PostBodyProps) => {
         return <Loading />;
     }
     if (isError) {
-        return <div>Error</div>;
+        return <ErrorPage />;
     }
 
     const onChangeCnt = (isIncrease: boolean) => {

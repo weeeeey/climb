@@ -25,6 +25,11 @@ export async function GET(
                         createdAt: true,
                         viewed: true,
                         like: true,
+                        profile: {
+                            select: {
+                                name: true,
+                            },
+                        },
                     },
                 },
             },
