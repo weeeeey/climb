@@ -5,7 +5,12 @@ const PostIdPage = async ({ params }: { params: { postId: string } }) => {
     const { postId } = params;
     const loginedProfile = await currentProfile();
 
-    return <PostBody postId={postId} loginedProfile={loginedProfile} />;
+    return (
+        <PostBody
+            postId={postId}
+            loginedProfile={loginedProfile?.id ? loginedProfile : undefined}
+        />
+    );
 };
 
 export default PostIdPage;

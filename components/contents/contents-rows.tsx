@@ -7,12 +7,16 @@ import Link from 'next/link';
 export const ContentsRows = ({
     posts,
 }: Omit<ContentsBodyProps, 'subCategory'>) => {
+    console.log(posts[0].id);
     return (
         <TableBody>
             {posts.map((post: SafePost) => (
                 <TableRow key={post.id}>
                     <TableCell>
-                        <Link className="text-lg" href={`/post/${post.id}`}>
+                        <Link
+                            className="text-lg"
+                            href={`/post/${post.id.toString()}`}
+                        >
                             {post.title}
                         </Link>
                         <div className="text-xs text-slate-400">
