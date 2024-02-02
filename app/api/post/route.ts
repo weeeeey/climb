@@ -33,7 +33,7 @@ export async function POST(req: Request) {
             return new NextResponse('Unauthorized User', { status: 401 });
         }
         const body = await req.json();
-        const { category, subCategory, title, content } = body;
+        const { category, subCategory, title, content, city, gu } = body;
 
         if (!categories.includes(category)) {
             return new NextResponse('invalid date', { status: 400 });
@@ -63,6 +63,8 @@ export async function POST(req: Request) {
                 title,
                 content,
                 subCategoryId: subCate?.id,
+                city,
+                gu,
             },
         });
 

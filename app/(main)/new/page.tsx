@@ -22,6 +22,8 @@ const FormSchema = z.object({
     subCategory: z.string(),
     title: z.string().min(2, '제목은 2글자 이상으로 작성해주세요'),
     content: z.string().min(1),
+    city: z.string().optional(),
+    gu: z.string().optional(),
 });
 
 const NewPpage = () => {
@@ -45,13 +47,15 @@ const NewPpage = () => {
     async function onSubmit(data: z.infer<typeof FormSchema>) {
         setisLoading(true);
         try {
-            const { category, content, subCategory, title } = data;
+            const { category, content, subCategory, title, city, gu } = data;
 
             const res = await axios.post('/api/post', {
                 category,
                 title,
                 content,
                 subCategory,
+                city,
+                gu,
             });
             if (res.status === 200) {
                 router.push(`/post/${res.data.id}`);

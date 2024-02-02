@@ -41,7 +41,8 @@ model Post {
   like Int @default(0)
   viewed Int @default(0)
   
-  location String?
+  city String?
+  gu String?
   marketPrice Int? @default(0)
 
   images Image[]

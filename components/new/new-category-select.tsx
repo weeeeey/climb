@@ -16,6 +16,7 @@ import { Control, ControllerRenderProps } from 'react-hook-form';
 import { CategoryType, MyFiledValues, categories } from './new-types';
 import { useEffect, useState } from 'react';
 import { NewSubSelect } from './new-sub-select';
+import { LocationBody } from './location/location-body';
 
 interface NewSelectProps {
     control: Control<MyFiledValues>;
@@ -62,7 +63,10 @@ export const NewCategorySelect = ({ field, control }: NewSelectProps) => {
                             field={field}
                         />
                     )}
-                ></FormField>
+                />
+            )}
+            {selectedCate && ['crew', 'market'].includes(selectedCate) && (
+                <LocationBody control={control} />
             )}
         </>
     );
