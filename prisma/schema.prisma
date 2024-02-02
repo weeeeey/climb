@@ -30,6 +30,9 @@ model Profile {
   conversationsReceived Conversation[] @relation("profileTwo")
   directMessages DirectMessage[]
   
+  comments Comment[]
+  replyComment ReplyComment[]
+  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -53,11 +56,41 @@ model Post {
   subCategoryId String @db.ObjectId
   subCategory SubCategory @relation(fields: [subCategoryId], references: [id], onDelete: Cascade)
 
+  comments Comment[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([profileId])
   @@index([subCategoryId])
+}
+
+model Comment {
+  id String @id @default(auto()) @map("_id") @db.ObjectId()
+  text String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  postId String @db.ObjectId
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  
+  profileId String @db.ObjectId
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  
+  replyComments ReplyComment[]
+}
+
+model ReplyComment {
+  id String @id @default(auto()) @map("_id") @db.ObjectId()
+  text String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  commentId String @db.ObjectId
+  comment Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
+
+  profileId String @db.ObjectId
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
 }
 
 
