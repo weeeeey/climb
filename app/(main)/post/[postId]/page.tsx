@@ -1,6 +1,5 @@
 import currentProfile from '@/action/current-profile';
 import { PostBody } from '@/components/post/post-body';
-import { db } from '@/lib/db';
 
 const PostIdPage = async ({ params }: { params: { postId: string } }) => {
     const { postId } = params;

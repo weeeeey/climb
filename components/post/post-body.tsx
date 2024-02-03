@@ -4,10 +4,12 @@ import { PostTitle } from './post-title';
 import { PostContent } from './post-content';
 import { Profile } from '@prisma/client';
 import { Loading } from '../loading';
-import { PostLike } from './post-like';
 import { useQueryContent } from '@/lib/use-query-content';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ErrorPage } from '../error';
+import { CommentBody } from './comment/comment-body';
+import { Separator } from '../ui/separator';
+import { PostButton } from './post-button';
 
 interface PostBodyProps {
     postId: string;
@@ -16,6 +18,8 @@ interface PostBodyProps {
 
 export const PostBody = ({ postId, loginedProfile }: PostBodyProps) => {
     const [likeCount, setLikeCount] = useState(0);
+    const commentFormRef = useRef<HTMLTextAreaElement>(null);
+
     const {
         data: post,
         isLoading,
@@ -41,8 +45,16 @@ export const PostBody = ({ postId, loginedProfile }: PostBodyProps) => {
         const plusLike = isIncrease ? 1 : -1;
         setLikeCount((prev) => prev + plusLike);
     };
+    const onFocusCommentForm = () => {
+        if (commentFormRef.current) {
+            commentFormRef.current.scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => {
+                commentFormRef.current!.focus();
+            }, 300); // Adjust the delay as needed
+        }
+    };
     return (
-        <div className="space-y-10 ">
+        <div className="space-y-5">
             <PostTitle
                 athuor={post.profile.name}
                 title={post.title}
@@ -51,10 +63,18 @@ export const PostBody = ({ postId, loginedProfile }: PostBodyProps) => {
                 like={likeCount}
             />
             <PostContent content={post.content} />
-            <PostLike
-                postId={post.id}
+            <Separator />
+            <PostButton
+                onFocusCommentForm={onFocusCommentForm}
                 loginedProfile={loginedProfile}
                 onChangeCnt={onChangeCnt}
+                postId={postId}
+            />
+            <CommentBody
+                loginedProfile={loginedProfile}
+                postId={postId}
+                comments={post.comments}
+                formRef={commentFormRef}
             />
         </div>
     );

@@ -26,6 +26,28 @@ export async function GET(
                         name: true,
                     },
                 },
+                comments: {
+                    include: {
+                        profile: {
+                            select: {
+                                name: true,
+                                imageUrl: true,
+                                createdAt: true,
+                            },
+                        },
+                        replyComments: {
+                            include: {
+                                profile: {
+                                    select: {
+                                        name: true,
+                                        imageUrl: true,
+                                        createdAt: true,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
             },
         });
         if (!post) {
@@ -33,7 +55,6 @@ export async function GET(
         }
         return NextResponse.json(post);
     } catch (error) {
-        console.log(error);
         return new NextResponse('internal error', { status: 500 });
     }
 }
@@ -64,7 +85,6 @@ export async function PATCH(
 
         return NextResponse.json(post);
     } catch (error) {
-        console.log(error);
         return new NextResponse('internal error', { status: 500 });
     }
 }
@@ -87,7 +107,6 @@ export async function DELETE(
 
         return NextResponse.json(post);
     } catch (error) {
-        console.log(error);
         return new NextResponse('internal error', { status: 500 });
     }
 }

@@ -5,6 +5,7 @@ import { Profile } from '@prisma/client';
 import axios from 'axios';
 import { Heart } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { Separator } from '../ui/separator';
 
 interface PostLikeProps {
     postId: string;
@@ -53,15 +54,13 @@ export const PostLike = ({
         }
     };
     return (
-        <div className="text-center">
-            <button onClick={handleClick}>
-                <Heart
-                    className={cn(
-                        'w-6 h-6 hover:text-slate-400',
-                        isLike && 'fill-red-500 text-red-500'
-                    )}
-                />
-            </button>
-        </div>
+        <button onClick={handleClick}>
+            <Heart
+                className={cn(
+                    'w-8 h-8 hover:text-slate-400',
+                    isLike && 'fill-red-500 text-red-500'
+                )}
+            />
+        </button>
     );
 };
