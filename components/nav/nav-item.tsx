@@ -22,6 +22,8 @@ export const NavItem = ({ title, url }: NavItemProps) => {
     const pathName = usePathname();
     const router = useRouter();
     const [subCates, setsubCates] = useState<string[]>();
+
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     useEffect(() => {
         if (url) {
             setsubCates(subCategories[url as CategoryType]);
@@ -44,8 +46,10 @@ export const NavItem = ({ title, url }: NavItemProps) => {
     }
 
     return (
-        <DropdownMenu>
+        <DropdownMenu open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <DropdownMenuTrigger
+                onPointerEnter={() => setIsMenuOpen(true)}
+                onPointerLeave={() => setIsMenuOpen(false)}
                 className={cn(
                     'text-base sm:text-2xl outline-none',
                     selectedFont(url, pathName)
@@ -56,6 +60,8 @@ export const NavItem = ({ title, url }: NavItemProps) => {
             <DropdownMenuContent>
                 {subCates?.map((sub, idx) => (
                     <DropdownMenuItem
+                        onPointerEnter={() => setIsMenuOpen(true)}
+                        onPointerLeave={() => setIsMenuOpen(false)}
                         key={sub}
                         className={cn(
                             'cursor-pointer inline-block px-3 ',
