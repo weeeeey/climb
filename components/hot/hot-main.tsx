@@ -10,6 +10,7 @@ import {
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { SafePost } from './hot-types';
+import { Flame } from 'lucide-react';
 
 interface HotMainProps {
     subCategory: string;
@@ -21,10 +22,16 @@ export const HotMain = ({ subCategory, category, posts }: HotMainProps) => {
     return (
         <Carousel className="w-full ">
             <div
-                className={cn('text-xl font-extrabold', hotTitleFont.className)}
+                className={cn(
+                    'text-xl flex justify-start items-center',
+                    hotTitleFont.className
+                )}
             >
-                😃 <span className="text-red-500">Hot</span>{' '}
-                <Link href={`/${category}/${subCategory}`}>{category}</Link>
+                <Flame className="w-6 h-6 fill-red-500 text-red-500 " />
+
+                <Link href={`/${category}/${subCategory}`}>
+                    <span className="text-yellow-400">Hot</span> {category}
+                </Link>
             </div>
             <CarouselContent>
                 {posts.map((post: SafePost) => (

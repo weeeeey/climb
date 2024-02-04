@@ -5,12 +5,14 @@ interface CardHeaderComponentProps {
     subCategory: string;
     city: string | undefined;
     gu: string | undefined;
+    author: string;
 }
 
 export const CardHeaderComponent = ({
     city,
     gu,
     subCategory,
+    author,
 }: CardHeaderComponentProps) => {
     return (
         <CardHeader>
@@ -19,11 +21,14 @@ export const CardHeaderComponent = ({
                     {subCategory}
                 </div>
             </CardTitle>
-            <div className="flex justify-between items-center text-sm">
-                <CardDescription>
-                    {city} {gu}
-                </CardDescription>
-                <CardDescription>총 200명</CardDescription>
+            <div className="text-sm">
+                <CardDescription>{author}</CardDescription>
+                <div className="flex justify-between items-center ">
+                    <CardDescription>
+                        {city} {gu}
+                    </CardDescription>
+                    <CardDescription>총 200명</CardDescription>
+                </div>
             </div>
         </CardHeader>
     );
