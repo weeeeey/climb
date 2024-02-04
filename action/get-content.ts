@@ -1,13 +1,14 @@
 import axios from 'axios';
 
 interface fetchFnProps {
-    cType: 'post' | 'subCategory';
+    cType: 'post' | 'subCategory' | 'hot';
     id: string;
 }
 
 export const fetchFn = async ({ id, cType }: fetchFnProps) => {
     try {
-        const url = cType === 'post' ? `/api/post/${id}` : `/api/sub/${id}`;
+        const url = `/api/${cType}/${id}`;
+
         const res = await axios({
             url,
             method: 'GET',
