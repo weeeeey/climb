@@ -1,13 +1,5 @@
-export type SafePost = {
-    id: string;
-    title: string;
-    createdAt: Date;
-    viewed: number;
-    like: number;
-    profile: {
-        name: string;
-    };
-};
+import { SafePost } from '../hot/hot-types';
+
 export interface ContentsBodyProps {
     posts: SafePost[];
 

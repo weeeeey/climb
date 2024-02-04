@@ -1,8 +1,9 @@
 import { TableBody, TableCell, TableRow } from '../ui/table';
-import { ContentsBodyProps, SafePost } from './contents-types';
+import { ContentsBodyProps } from './contents-types';
 import { format } from 'date-fns';
-import { Eye, Heart } from 'lucide-react';
+import { Eye, Heart, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
+import { SafePost } from '../hot/hot-types';
 
 export const ContentsRows = ({
     posts,
@@ -23,6 +24,10 @@ export const ContentsRows = ({
                         <div className="flex justify-center items-center space-x-1">
                             <Heart className="h-4 w-4" />
                             <div>{post.like}</div>
+                        </div>
+                        <div className="flex justify-center items-center  space-x-1">
+                            <MessageCircle className="w-4 h-4 " />
+                            <div>{post._count.comments}</div>
                         </div>
                         <div className="flex justify-center items-center  space-x-1">
                             <Eye className="w-4 h-4 " />

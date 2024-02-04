@@ -1,13 +1,17 @@
 import { SubCategory } from '@prisma/client';
 
 export type SafePost = {
-    city: string | undefined;
-    gu: string | undefined;
     id: string;
-    createdAt: string;
     title: string;
+    createdAt: Date;
     viewed: number;
     like: number;
+    profile: {
+        name: string;
+    };
+
+    city: string | undefined;
+    gu: string | undefined;
     _count: {
         comments: number;
     };

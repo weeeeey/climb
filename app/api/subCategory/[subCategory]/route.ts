@@ -20,14 +20,21 @@ export async function GET(
                         createdAt: 'desc',
                     },
                     select: {
+                        city: true,
+                        gu: true,
                         id: true,
-                        title: true,
                         createdAt: true,
+                        title: true,
                         viewed: true,
                         like: true,
                         profile: {
                             select: {
                                 name: true,
+                            },
+                        },
+                        _count: {
+                            select: {
+                                comments: true,
                             },
                         },
                     },

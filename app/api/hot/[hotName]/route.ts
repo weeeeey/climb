@@ -36,6 +36,11 @@ export async function GET(
                         title: true,
                         viewed: true,
                         like: true,
+                        profile: {
+                            select: {
+                                name: true,
+                            },
+                        },
                         _count: {
                             select: {
                                 comments: true,
