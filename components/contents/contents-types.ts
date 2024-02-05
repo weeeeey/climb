@@ -5,6 +5,11 @@ export interface ContentsBodyProps {
     posts: SafePost[];
     subCategory: string;
     likesArray: string[] | null;
+    _count: PostsCount;
 }
+
+type PostsCount = {
+    posts: number;
+};
 
 export type subCategoryKorType = keyof typeof subCategoryKor;

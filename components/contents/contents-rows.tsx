@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 export const ContentsRows = ({
     posts,
     likesArray,
-}: Omit<ContentsBodyProps, 'subCategory'>) => {
+}: Omit<ContentsBodyProps, 'subCategory' | '_count'>) => {
     const router = useRouter();
     const handleClick = (postId: string) => {
         router.push(`/post/${postId}`);
