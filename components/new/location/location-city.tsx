@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { CityType, MyFiledValues, locationJSON } from '../new-types';
+import { CityType, MyFiledValues } from '../new-types';
 
 import { FormControl, FormItem, FormLabel } from '@/components/ui/form';
 import {
@@ -11,6 +11,7 @@ import {
     SelectValue,
 } from '@/components/ui/select';
 import { ControllerRenderProps } from 'react-hook-form';
+import { locationJSON } from '@/config/data';
 
 interface LocationProps {
     field: ControllerRenderProps<MyFiledValues, 'city'>;

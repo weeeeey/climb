@@ -1,5 +1,6 @@
 import currentProfile from '@/action/current-profile';
-import { categories } from '@/components/new/new-types';
+import { categories } from '@/config/data';
+
 import { db } from '@/lib/db';
 import { NextResponse } from 'next/server';
 

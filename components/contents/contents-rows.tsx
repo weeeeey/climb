@@ -4,9 +4,11 @@ import { format } from 'date-fns';
 import { Eye, Heart, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 import { SafePost } from '../hot/hot-types';
+import { cn } from '@/lib/utils';
 
 export const ContentsRows = ({
     posts,
+    likesArray,
 }: Omit<ContentsBodyProps, 'subCategory'>) => {
     return (
         <TableBody>
@@ -22,7 +24,13 @@ export const ContentsRows = ({
                     </TableCell>
                     <TableCell className="flex items-center justify-between space-x-4 mt-3">
                         <div className="flex justify-center items-center space-x-1">
-                            <Heart className="h-4 w-4" />
+                            <Heart
+                                className={cn(
+                                    'h-4 w-4',
+                                    likesArray?.includes(post.id) &&
+                                        'fill-red-500 text-red-500'
+                                )}
+                            />
                             <div>{post.like}</div>
                         </div>
                         <div className="flex justify-center items-center  space-x-1">

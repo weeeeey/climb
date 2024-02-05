@@ -11,7 +11,8 @@ import {
     DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
 import { useEffect, useState } from 'react';
-import { CategoryType, subCategories } from '../new/new-types';
+import { CategoryType } from '../new/new-types';
+import { subCategories } from '@/config/data';
 
 interface NavItemProps {
     url: string;

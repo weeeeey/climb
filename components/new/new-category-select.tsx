@@ -13,10 +13,11 @@ import {
     SelectValue,
 } from '@/components/ui/select';
 import { Control, ControllerRenderProps } from 'react-hook-form';
-import { CategoryType, MyFiledValues, categories } from './new-types';
+import { CategoryType, MyFiledValues } from './new-types';
 import { useEffect, useState } from 'react';
 import { NewSubSelect } from './new-sub-select';
 import { LocationBody } from './location/location-body';
+import { categories } from '@/config/data';
 
 interface NewSelectProps {
     control: Control<MyFiledValues>;

@@ -1,33 +1,17 @@
-'use client';
+import { userLikes } from '@/action/user-likes';
 import { ContentsBody } from '@/components/contents/contents-body';
-import { ErrorPage } from '@/components/error';
-import { Loading } from '@/components/loading';
-import { useQueryContent } from '@/lib/use-query-content';
 import React from 'react';
 
-const CommunitySubCategoryPage = ({
+const CommunitySubCategoryPage = async ({
     params,
 }: {
     params: { subCategory: string };
 }) => {
     const { subCategory } = params;
 
-    const {
-        data: posts,
-        isError,
-        isLoading,
-    } = useQueryContent({
-        cType: 'subCategory',
-        id: subCategory,
-    });
+    const likesArray = await userLikes();
 
-    if (isLoading) {
-        return <Loading />;
-    }
-    if (isError) {
-        return <ErrorPage />;
-    }
-    return <ContentsBody posts={posts} subCategory={subCategory} />;
+    return <ContentsBody subCategory={subCategory} likesArray={likesArray} />;
 };
 
 export default CommunitySubCategoryPage;

@@ -12,7 +12,8 @@ import {
     SelectValue,
 } from '@/components/ui/select';
 import { ControllerRenderProps } from 'react-hook-form';
-import { CategoryType, MyFiledValues, subCategories } from './new-types';
+import { CategoryType, MyFiledValues } from './new-types';
+import { subCategories } from '@/config/data';
 
 interface NewSelectProps {
     field: ControllerRenderProps<MyFiledValues, 'subCategory'>;
