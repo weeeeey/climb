@@ -12,6 +12,8 @@ import { subCategoryKor } from '@/config/data';
 import { cn } from '@/lib/utils';
 import { boardTitleFont } from '@/font.config';
 import { PagiBody } from './pagination/pagi-body';
+import { NewRouterBtn } from '../new/new-routerBtn';
+import { ContentsTitle } from './contents-title';
 
 export const ContentsBody = ({
     subCategory,
@@ -56,20 +58,12 @@ export const ContentsBody = ({
 
     return (
         <div className="xl:mx-52 mt-10 space-y-8">
-            <div
-                className={cn(
-                    ' bg-red-100 rounded-lg flex justify-start   items-center  text-2xl px-3 py-1 ',
-                    boardTitleFont.className
-                )}
-            >
-                <div className="w-2 h-5  mr-2 bg-black inline-block" />
-                <span className="inline-block ">{boardTitle}</span>
-            </div>
-
+            <ContentsTitle boardTitle={boardTitle} />
             <Table>
                 <ContentsHead />
                 <ContentsRows posts={data.posts} likesArray={likesArray} />
             </Table>
+            <NewRouterBtn />
             <PagiBody
                 postsCount={data._count.posts}
                 movePage={movePage}
