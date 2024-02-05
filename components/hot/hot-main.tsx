@@ -16,9 +16,15 @@ interface HotMainProps {
     subCategory: string;
     category: string;
     posts: SafePost[];
+    likeArray: string[] | null;
 }
 
-export const HotMain = ({ subCategory, category, posts }: HotMainProps) => {
+export const HotMain = ({
+    subCategory,
+    category,
+    posts,
+    likeArray,
+}: HotMainProps) => {
     return (
         <Carousel className="w-full ">
             <div
@@ -39,7 +45,11 @@ export const HotMain = ({ subCategory, category, posts }: HotMainProps) => {
                         key={post.id}
                         className="sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
                     >
-                        <HotCard post={post} subCategory={subCategory} />
+                        <HotCard
+                            post={post}
+                            subCategory={subCategory}
+                            likeArray={likeArray}
+                        />
                     </CarouselItem>
                 ))}
             </CarouselContent>

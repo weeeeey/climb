@@ -7,9 +7,10 @@ import { ErrorPage } from '../error';
 interface HotBodyProps {
     category: string;
     subCategory: string;
+    likeArray: string[] | null;
 }
 
-export const HotBody = ({ subCategory, category }: HotBodyProps) => {
+export const HotBody = ({ subCategory, category, likeArray }: HotBodyProps) => {
     const { data, isLoading, isError } = useQueryContent({
         cType: 'hot',
         id: subCategory,
@@ -26,6 +27,7 @@ export const HotBody = ({ subCategory, category }: HotBodyProps) => {
             category={category}
             subCategory={subCategory}
             posts={data.posts}
+            likeArray={likeArray}
         />
     );
 };

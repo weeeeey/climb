@@ -50,7 +50,7 @@ export const PostBody = ({ postId, loginedProfile }: PostBodyProps) => {
             commentFormRef.current.scrollIntoView({ behavior: 'smooth' });
             setTimeout(() => {
                 commentFormRef.current!.focus();
-            }, 300); // Adjust the delay as needed
+            }, 300);
         }
     };
     return (

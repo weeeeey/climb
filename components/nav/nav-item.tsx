@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { selectedFont } from '@/lib/selectedFont';
 import { usePathname, useRouter } from 'next/navigation';
@@ -30,7 +29,7 @@ export const NavItem = ({ title, url }: NavItemProps) => {
             setsubCates(subCategories[url as CategoryType]);
         }
     }, [url]);
-    const handleClick = (sub: string) => {
+    const handleClick = (sub: string = '') => {
         router.push(`/${url}/${sub}`);
     };
     if (url === 'market') {
@@ -51,6 +50,7 @@ export const NavItem = ({ title, url }: NavItemProps) => {
             <DropdownMenuTrigger
                 onPointerEnter={() => setIsMenuOpen(true)}
                 onPointerLeave={() => setIsMenuOpen(false)}
+                onClick={() => handleClick()}
                 className={cn(
                     'text-base sm:text-2xl outline-none',
                     selectedFont(url, pathName)
@@ -58,11 +58,12 @@ export const NavItem = ({ title, url }: NavItemProps) => {
             >
                 {title}
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
+            <DropdownMenuContent
+                onPointerEnter={() => setIsMenuOpen(true)}
+                onPointerLeave={() => setIsMenuOpen(false)}
+            >
                 {subCates?.map((sub, idx) => (
                     <DropdownMenuItem
-                        onPointerEnter={() => setIsMenuOpen(true)}
-                        onPointerLeave={() => setIsMenuOpen(false)}
                         key={sub}
                         className={cn(
                             'cursor-pointer inline-block px-3 ',

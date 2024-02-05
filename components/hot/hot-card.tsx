@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from '@/components/ui/card';
+
 import { SafePost } from './hot-types';
 import Link from 'next/link';
 import { CardBody } from './card/card-body';
@@ -14,12 +7,17 @@ import { CardBody } from './card/card-body';
 interface HotCardProps {
     post: SafePost;
     subCategory: string;
+    likeArray: string[] | null;
 }
 
-export const HotCard = ({ post, subCategory }: HotCardProps) => {
+export const HotCard = ({ post, subCategory, likeArray }: HotCardProps) => {
     return (
         <Link href={`/post/${post.id}`} className="p-5">
-            <CardBody post={post} subCategory={subCategory} />
+            <CardBody
+                likeArray={likeArray}
+                post={post}
+                subCategory={subCategory}
+            />
         </Link>
     );
 };

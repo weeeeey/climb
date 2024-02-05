@@ -1,3 +1,4 @@
+import { subCategoryKor } from '@/config/data';
 import { SafePost } from '../hot/hot-types';
 
 export interface ContentsBodyProps {
@@ -5,3 +6,5 @@ export interface ContentsBodyProps {
     subCategory: string;
     likesArray: string[] | null;
 }
+
+export type subCategoryKorType = keyof typeof subCategoryKor;

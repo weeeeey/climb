@@ -1,23 +1,30 @@
+'use client';
 import { TableBody, TableCell, TableRow } from '../ui/table';
 import { ContentsBodyProps } from './contents-types';
 import { format } from 'date-fns';
 import { Eye, Heart, MessageCircle } from 'lucide-react';
-import Link from 'next/link';
 import { SafePost } from '../hot/hot-types';
 import { cn } from '@/lib/utils';
+import { useRouter } from 'next/navigation';
 
 export const ContentsRows = ({
     posts,
     likesArray,
 }: Omit<ContentsBodyProps, 'subCategory'>) => {
+    const router = useRouter();
+    const handleClick = (postId: string) => {
+        router.push(`/post/${postId}`);
+    };
     return (
         <TableBody>
             {posts.map((post: SafePost) => (
-                <TableRow key={post.id}>
+                <TableRow
+                    key={post.id}
+                    onClick={() => handleClick(post.id)}
+                    className="cursor-pointer"
+                >
                     <TableCell>
-                        <Link className="text-lg" href={`/post/${post.id}`}>
-                            {post.title}
-                        </Link>
+                        <div className="text-lg">{post.title}</div>
                         <div className="text-xs text-slate-400">
                             {post.profile.name}
                         </div>

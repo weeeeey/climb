@@ -8,9 +8,10 @@ import { CardContentComponent } from './card-contentt';
 interface CardBodyProps {
     post: SafePost;
     subCategory: string;
+    likeArray: string[] | null;
 }
 
-export const CardBody = ({ post, subCategory }: CardBodyProps) => {
+export const CardBody = ({ post, subCategory, likeArray }: CardBodyProps) => {
     return (
         <Card className="hover:bg-slate-100">
             <CardHeaderComponent
@@ -24,6 +25,8 @@ export const CardBody = ({ post, subCategory }: CardBodyProps) => {
                 commentsCnt={post._count.comments}
                 like={post.like}
                 viewed={post.viewed}
+                likeArray={likeArray}
+                postId={post.id}
             />
         </Card>
     );
