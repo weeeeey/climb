@@ -11,7 +11,13 @@ const ReviewSubCategoryPage = async ({
 
     const likesArray = await userLikes();
 
-    return <ContentsBody subCategory={subCategory} likesArray={likesArray} />;
+    return (
+        <ContentsBody
+            category="review"
+            subCategory={subCategory}
+            likesArray={likesArray}
+        />
+    );
 };
 
 export default ReviewSubCategoryPage;

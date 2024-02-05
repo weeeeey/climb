@@ -29,24 +29,26 @@ const FormSchema = z.object({
 const NewPpage = () => {
     const [isLoading, setisLoading] = useState(false);
     const router = useRouter();
-    // const searchParams = useSearchParams();
-    // const urlCategory = searchParams.get('category');
-    // const urlSubCategory = searchParams.get('subCategory');
+    const searchParams = useSearchParams();
+
+    const urlCategory = searchParams.get('category');
+    const urlSubCategory = searchParams.get('subCategory');
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
 
-        // defaultValues: {
-        //     subCategory: urlSubCategory ? urlSubCategory : '',
-        //     category: urlCategory ? urlCategory : '',
-        // },
+        defaultValues: {
+            subCategory: urlSubCategory || undefined,
+            category: urlCategory || undefined,
+        },
     });
+
     if (isLoading) {
         return <Loading />;
     }
     async function onSubmit(data: z.infer<typeof FormSchema>) {
-        setisLoading(true);
         try {
+            setisLoading(true);
             const { category, content, subCategory, title, city, gu } = data;
 
             const res = await axios.post('/api/post', {
@@ -58,9 +60,9 @@ const NewPpage = () => {
                 gu,
             });
             if (res.status === 200) {
-                router.push(`/post/${res.data.id}`);
-                toast.success('Success');
                 router.refresh();
+                toast.success('Success');
+                router.push(`/post/${res.data.id}`);
             }
         } catch (error) {
             console.log(error);

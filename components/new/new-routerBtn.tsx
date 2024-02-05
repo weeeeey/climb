@@ -3,10 +3,15 @@ import { boardTitleFont } from '@/font.config';
 import { cn } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
 
-export const NewRouterBtn = () => {
+interface NewRouterBtnProps {
+    subCategory: string;
+    category: string;
+}
+
+export const NewRouterBtn = ({ category, subCategory }: NewRouterBtnProps) => {
     const router = useRouter();
     const handleClick = () => {
-        router.push('/new');
+        router.push(`/new?category=${category}&subCategory=${subCategory}`);
     };
     return (
         <div className="flex justify-end items-center">

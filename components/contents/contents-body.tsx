@@ -9,8 +9,6 @@ import { Loading } from '../loading';
 import { ErrorPage } from '../error';
 import { useEffect, useState } from 'react';
 import { subCategoryKor } from '@/config/data';
-import { cn } from '@/lib/utils';
-import { boardTitleFont } from '@/font.config';
 import { PagiBody } from './pagination/pagi-body';
 import { NewRouterBtn } from '../new/new-routerBtn';
 import { ContentsTitle } from './contents-title';
@@ -18,7 +16,8 @@ import { ContentsTitle } from './contents-title';
 export const ContentsBody = ({
     subCategory,
     likesArray,
-}: Omit<ContentsBodyProps, 'posts'>) => {
+    category,
+}: Omit<ContentsBodyProps, 'posts' | '_count'>) => {
     const [boardTitle, setBoardTitle] = useState<string>();
 
     const [selectedPage, setSelectedPage] = useState<number>(1);
@@ -63,7 +62,7 @@ export const ContentsBody = ({
                 <ContentsHead />
                 <ContentsRows posts={data.posts} likesArray={likesArray} />
             </Table>
-            <NewRouterBtn />
+            <NewRouterBtn category={category} subCategory={subCategory} />
             <PagiBody
                 postsCount={data._count.posts}
                 movePage={movePage}

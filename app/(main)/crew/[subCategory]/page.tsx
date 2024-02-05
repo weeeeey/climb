@@ -10,7 +10,13 @@ const SubCategoryPage = async ({
     const { subCategory } = params;
     const likesArray = await userLikes();
 
-    return <ContentsBody subCategory={subCategory} likesArray={likesArray} />;
+    return (
+        <ContentsBody
+            category="crew"
+            subCategory={subCategory}
+            likesArray={likesArray}
+        />
+    );
 };
 
 export default SubCategoryPage;
