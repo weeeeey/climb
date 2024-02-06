@@ -18,6 +18,7 @@ import { useEffect, useState } from 'react';
 import { NewSubSelect } from './new-sub-select';
 import { LocationBody } from './location/location-body';
 import { categories } from '@/config/data';
+import MapBody from './map/map-body';
 
 interface NewSelectProps {
     control: Control<MyFiledValues>;

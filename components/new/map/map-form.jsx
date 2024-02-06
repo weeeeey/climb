@@ -8,7 +8,7 @@ export const MapForm = ({ inputValue, onChange, handleSubmit, resultList }) => {
                 <input
                     type="text"
                     className="border-2 px-2 py-1 rounded-md  "
-                    placeholder="asdasd"
+                    placeholder="다녀오신 곳을 찾아주세요"
                     value={inputValue}
                     onChange={onChange}
                 />

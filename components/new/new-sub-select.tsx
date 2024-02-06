@@ -14,6 +14,7 @@ import {
 import { ControllerRenderProps } from 'react-hook-form';
 import { CategoryType, MyFiledValues } from './new-types';
 import { subCategories } from '@/config/data';
+import MapBody from './map/map-body';
 
 interface NewSelectProps {
     field: ControllerRenderProps<MyFiledValues, 'subCategory'>;
@@ -44,6 +45,7 @@ export const NewSubSelect = ({ field, selectedCate }: NewSelectProps) => {
                 </Select>
                 <FormMessage />
             </FormItem>
+            {field.value === 'spot' && <MapBody />}
         </div>
     );
 };
