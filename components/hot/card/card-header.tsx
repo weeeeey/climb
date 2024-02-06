@@ -23,12 +23,14 @@ export const CardHeaderComponent = ({
             </CardTitle>
             <div className="text-sm">
                 <CardDescription>{author}</CardDescription>
-                <div className="flex justify-between items-center ">
-                    <CardDescription>
-                        {city} {gu}
-                    </CardDescription>
-                    <CardDescription>총 200명</CardDescription>
-                </div>
+                {city && (
+                    <div className="flex justify-between items-center ">
+                        <CardDescription>
+                            {city} {gu}
+                        </CardDescription>
+                        <CardDescription>총 200명</CardDescription>
+                    </div>
+                )}
             </div>
         </CardHeader>
     );

@@ -13,7 +13,9 @@ export const CardContentComponent = ({ date, title }: CardContentProps) => {
             <div className="text-sm text-slate-400 ">
                 게시일 {format(date, 'yy.MM.dd')}
             </div>
-            <div className="text-2xl font-semibold">{title}</div>
+            <div className="text-2xl font-semibold text-nowrap overflow-hidden">
+                {title.length <= 14 ? title : `${title.substring(0, 14)}...`}
+            </div>
         </CardContent>
     );
 };

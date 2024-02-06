@@ -7,6 +7,7 @@ import { siteConfig } from '@/config/site';
 import { TopButton } from '@/components/ui/topButton';
 import QueryProvider from '@/provider/query-provider';
 import ToasterProvider from '@/provider/toast-provider';
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -36,6 +37,10 @@ export default function RootLayout({
                     <body className={inter.className}>
                         <ToasterProvider />
                         <NavBar />
+                        <Script
+                            src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_APPKEY}&libraries=services,clusterer&autoload=false`}
+                            strategy="beforeInteractive"
+                        />
                         <main className="px-10 sm:px-20 pt-5 w-full pb-20">
                             {children}
                         </main>
