@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Map, MapMarker, ZoomControl } from 'react-kakao-maps-sdk';
 import { MapForm } from './map-form';
+import { MapMain } from './map-main';
 
 export default function MapBody() {
     const [inputValue, setInputValue] = useState('');
@@ -28,6 +28,14 @@ export default function MapBody() {
     };
     const handleSelectedMarker = (clickedMarker) => {
         setSelectedInfo(clickedMarker);
+        console.log(clickedMarker);
+    };
+    const onClickList = (clickMarker) => {
+        markers.forEach((marker) => {
+            if (marker.content === clickMarker.place_name) {
+                setSelectedInfo(marker);
+            }
+        });
     };
     const handleSubmit = (e) => {
         e.preventdefault;
@@ -57,62 +65,29 @@ export default function MapBody() {
                 setMarkers(markers);
 
                 map.setBounds(bounds);
+            } else {
+                window.alert('검색된 결과가 없어요ㅜㅜ');
             }
         });
     };
 
     return (
         <div className="flex  space-x-2 ">
-            <Map // 로드뷰를 표시할 Container
-                center={{
-                    lat: 35.32618509176042,
-                    lng: 127.63769332300419,
-                }}
-                style={{
-                    width: '50%',
-                    height: '350px',
-                }}
-                level={4}
-                onCreate={setMap}
-            >
-                {markers.map((marker) => (
-                    <MapMarker
-                        key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
-                        position={marker.position}
-                        onClick={() => handleSelectedMarker(marker)}
-                        onMouseOver={() => setInfo(marker)}
-                        onMouseOut={() => setInfo('')}
-                        image={
-                            marker === selectedInfo && {
-                                src: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다
-                                size: {
-                                    width: 64,
-                                    height: 69,
-                                }, // 마커이미지의 크기입니다
-                                options: {
-                                    offset: {
-                                        x: 27,
-                                        y: 69,
-                                    }, // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-                                },
-                            }
-                        }
-                    >
-                        {info && info.content === marker.content && (
-                            <div className="px-2  text-nowrap ">
-                                {marker.content}
-                            </div>
-                        )}
-                    </MapMarker>
-                ))}
-                <ZoomControl position={'TOPRIGHT'} />
-            </Map>
+            <MapMain
+                markers={markers}
+                selectedInfo={selectedInfo}
+                info={info}
+                handleSelectedMarker={handleSelectedMarker}
+                setInfo={setInfo}
+                setMap={setMap}
+            />
 
             <MapForm
                 handleSubmit={handleSubmit}
                 inputValue={inputValue}
                 onChange={onChange}
                 resultList={resultList}
+                onClickList={onClickList}
             />
         </div>
     );

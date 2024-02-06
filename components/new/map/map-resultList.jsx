@@ -1,13 +1,14 @@
 import { ScrollArea } from '@/components/ui/scroll-area';
 import React from 'react';
 
-export const MapResultList = ({ resultList }) => {
+export const MapResultList = ({ resultList, onClickList }) => {
     return (
-        <ScrollArea className="border h-15 ">
+        <>
             {resultList.map((result) => (
                 <div
                     key={result.id}
-                    className="border-b px-4 py-2 text-xs space-y-2"
+                    className="border-b px-4 py-2 text-xs space-y-2 hover:bg-red-200"
+                    onClick={() => onClickList(result)}
                 >
                     <a
                         href={result.place_url}
@@ -28,6 +29,6 @@ export const MapResultList = ({ resultList }) => {
                     <div>{result.phone}</div>
                 </div>
             ))}
-        </ScrollArea>
+        </>
     );
 };

@@ -1,7 +1,13 @@
 import React from 'react';
 import { MapResultList } from './map-resultList';
 
-export const MapForm = ({ inputValue, onChange, handleSubmit, resultList }) => {
+export const MapForm = ({
+    inputValue,
+    onChange,
+    handleSubmit,
+    resultList,
+    onClickList,
+}) => {
     return (
         <div className="space-y-2 h-16 ">
             <div className="flex space-x-2 justify-start items-center">
@@ -19,7 +25,7 @@ export const MapForm = ({ inputValue, onChange, handleSubmit, resultList }) => {
                     검색
                 </button>
             </div>
-            <MapResultList resultList={resultList} />
+            <MapResultList resultList={resultList} onClickList={onClickList} />
         </div>
     );
 };
