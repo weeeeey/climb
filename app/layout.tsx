@@ -8,6 +8,7 @@ import { TopButton } from '@/components/ui/topButton';
 import QueryProvider from '@/provider/query-provider';
 import ToasterProvider from '@/provider/toast-provider';
 import Script from 'next/script';
+import { FooterBody } from '@/components/footer/footer-body';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -45,6 +46,7 @@ export default function RootLayout({
                             {children}
                         </main>
                         <TopButton />
+                        <FooterBody />
                     </body>
                 </html>
             </ClerkProvider>
