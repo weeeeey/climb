@@ -52,7 +52,7 @@ export const NavItem = ({ title, url }: NavItemProps) => {
                 onPointerLeave={() => setIsMenuOpen(false)}
                 onClick={() => handleClick()}
                 className={cn(
-                    'text-base sm:text-2xl outline-none',
+                    'text-base sm:text-2xl outline-none ',
                     selectedFont(url, pathName)
                 )}
             >
@@ -62,18 +62,20 @@ export const NavItem = ({ title, url }: NavItemProps) => {
                 onPointerEnter={() => setIsMenuOpen(true)}
                 onPointerLeave={() => setIsMenuOpen(false)}
             >
-                {subCates?.map((sub, idx) => (
-                    <DropdownMenuItem
-                        key={sub}
-                        className={cn(
-                            'cursor-pointer inline-block px-3 ',
-                            idx !== subCates.length - 1 && 'border-r-2'
-                        )}
-                        onClick={() => handleClick(sub)}
-                    >
-                        {sub}
-                    </DropdownMenuItem>
-                ))}
+                <div className="flex justify-center items-center">
+                    {subCates?.map((sub, idx) => (
+                        <DropdownMenuItem
+                            key={sub}
+                            className={cn(
+                                'cursor-pointer px-3 ',
+                                idx !== subCates.length - 1 && 'border-r-2'
+                            )}
+                            onClick={() => handleClick(sub)}
+                        >
+                            {sub}
+                        </DropdownMenuItem>
+                    ))}
+                </div>
             </DropdownMenuContent>
         </DropdownMenu>
     );

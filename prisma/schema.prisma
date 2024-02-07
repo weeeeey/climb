@@ -47,6 +47,8 @@ model Post {
   city String?
   gu String?
   marketPrice Int? @default(0)
+  place String?
+
 
   images Image[]
 

@@ -5,7 +5,7 @@ import { MapForm } from './map-form';
 import { MapMain } from './map-main';
 import { Loading } from '@/components/loading';
 
-export default function MapBody() {
+export default function MapBody({ field, title }) {
     const [initialLocation, setInitialLocation] = useState();
     const [inputValue, setInputValue] = useState('');
     const [resultList, setResultList] = useState([]);
@@ -17,9 +17,6 @@ export default function MapBody() {
     useEffect(() => {
         if (!map) return;
     }, [map]);
-    useEffect(() => {
-        console.log(selectedInfo);
-    }, [selectedInfo]);
 
     useEffect(() => {
         if ('geolocation' in navigator) {
@@ -64,11 +61,12 @@ export default function MapBody() {
     };
     const handleSelectedMarker = (clickedMarker) => {
         setSelectedInfo(clickedMarker);
+        field.onChange(clickedMarker.content);
     };
     const onClickList = (clickMarker) => {
         markers.forEach((marker) => {
             if (marker.content === clickMarker.place_name) {
-                setSelectedInfo(marker);
+                handleSelectedMarker(marker);
             }
         });
     };
@@ -110,25 +108,28 @@ export default function MapBody() {
     }
 
     return (
-        <div className="flex  space-x-2 ">
-            <MapMain
-                initialLocation={initialLocation}
-                markers={markers}
-                selectedInfo={selectedInfo}
-                info={info}
-                handleSelectedMarker={handleSelectedMarker}
-                setInfo={setInfo}
-                setMap={setMap}
-            />
+        <div className="space-y-2">
+            <div>{title}</div>
+            <div className="flex space-x-2">
+                <MapMain
+                    initialLocation={initialLocation}
+                    markers={markers}
+                    selectedInfo={selectedInfo}
+                    info={info}
+                    handleSelectedMarker={handleSelectedMarker}
+                    setInfo={setInfo}
+                    setMap={setMap}
+                />
 
-            <MapForm
-                handleSearch={handleSearch}
-                inputValue={inputValue}
-                onChange={onChange}
-                resultList={resultList}
-                onClickList={onClickList}
-                selectedInfo={selectedInfo}
-            />
+                <MapForm
+                    handleSearch={handleSearch}
+                    inputValue={inputValue}
+                    onChange={onChange}
+                    resultList={resultList}
+                    onClickList={onClickList}
+                    selectedInfo={selectedInfo}
+                />
+            </div>
         </div>
     );
 }

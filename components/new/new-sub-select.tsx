@@ -1,5 +1,6 @@
 import {
     FormControl,
+    FormField,
     FormItem,
     FormLabel,
     FormMessage,
@@ -11,17 +12,22 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
-import { ControllerRenderProps } from 'react-hook-form';
+import { Control, ControllerRenderProps } from 'react-hook-form';
 import { CategoryType, MyFiledValues } from './new-types';
 import { subCategories } from '@/config/data';
 import MapBody from './map/map-body';
 
 interface NewSelectProps {
+    control: Control<MyFiledValues>;
     field: ControllerRenderProps<MyFiledValues, 'subCategory'>;
     selectedCate: CategoryType;
 }
 
-export const NewSubSelect = ({ field, selectedCate }: NewSelectProps) => {
+export const NewSubSelect = ({
+    field,
+    selectedCate,
+    control,
+}: NewSelectProps) => {
     return (
         <div className="space-y-12">
             <FormItem>
@@ -45,7 +51,19 @@ export const NewSubSelect = ({ field, selectedCate }: NewSelectProps) => {
                 </Select>
                 <FormMessage />
             </FormItem>
-            {field.value === 'spot' && <MapBody />}
+
+            {field.value === 'spot' && (
+                <FormField
+                    control={control}
+                    name="place"
+                    render={({ field }) => (
+                        <MapBody
+                            title="[다녀오신 지점을 알려주세요]"
+                            field={field}
+                        />
+                    )}
+                />
+            )}
         </div>
     );
 };

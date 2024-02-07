@@ -8,6 +8,7 @@ export interface MyFiledValues {
     content: string;
     city?: string;
     gu?: string;
+    place?: string;
 }
 
 export interface EditorProvideProps {

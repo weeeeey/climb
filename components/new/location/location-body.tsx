@@ -5,6 +5,7 @@ import { Control } from 'react-hook-form';
 import { CityType, MyFiledValues } from '../new-types';
 import { LocationCity } from './location-city';
 import { LocationGu } from './location-gu';
+import MapBody from '../map/map-body';
 
 interface LocationBodyProps {
     control: Control<MyFiledValues>;
@@ -33,6 +34,16 @@ export const LocationBody = ({ control }: LocationBodyProps) => {
                     )}
                 />
             )}
+            <FormField
+                control={control}
+                name="place"
+                render={({ field }) => (
+                    <MapBody
+                        title="(옵션) 크루의 아지트가 있으실까요?"
+                        field={field}
+                    />
+                )}
+            />
         </>
     );
 };

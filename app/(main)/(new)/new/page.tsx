@@ -24,6 +24,7 @@ const FormSchema = z.object({
     content: z.string().min(1),
     city: z.string().optional(),
     gu: z.string().optional(),
+    place: z.string().optional(),
 });
 
 const NewPpage = () => {
@@ -49,7 +50,8 @@ const NewPpage = () => {
     async function onSubmit(data: z.infer<typeof FormSchema>) {
         try {
             setisLoading(true);
-            const { category, content, subCategory, title, city, gu } = data;
+            const { category, content, subCategory, title, city, gu, place } =
+                data;
 
             const res = await axios.post('/api/post', {
                 category,
@@ -58,6 +60,7 @@ const NewPpage = () => {
                 subCategory,
                 city,
                 gu,
+                place,
             });
             if (res.status === 200) {
                 router.refresh();
@@ -71,9 +74,7 @@ const NewPpage = () => {
         }
     }
 
-    function inValidSubmit(errors: FieldErrors<MyFiledValues>) {
-        console.log(errors);
-    }
+    function inValidSubmit(errors: FieldErrors<MyFiledValues>) {}
     return (
         <Form {...form}>
             <form

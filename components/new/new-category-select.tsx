@@ -18,7 +18,6 @@ import { useEffect, useState } from 'react';
 import { NewSubSelect } from './new-sub-select';
 import { LocationBody } from './location/location-body';
 import { categories } from '@/config/data';
-import MapBody from './map/map-body';
 
 interface NewSelectProps {
     control: Control<MyFiledValues>;
@@ -63,6 +62,7 @@ export const NewCategorySelect = ({ field, control }: NewSelectProps) => {
                         <NewSubSelect
                             selectedCate={selectedCate}
                             field={field}
+                            control={control}
                         />
                     )}
                 />
