@@ -8,12 +8,13 @@ export const MapMain = ({
     handleSelectedMarker,
     setInfo,
     setMap,
+    initialLocation,
 }) => {
     return (
         <Map // 로드뷰를 표시할 Container
             center={{
-                lat: 35.32618509176042,
-                lng: 127.63769332300419,
+                lat: initialLocation.position.lat,
+                lng: initialLocation.position.lng,
             }}
             style={{
                 width: '50%',

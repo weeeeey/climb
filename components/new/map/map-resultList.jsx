@@ -1,19 +1,30 @@
-import { ScrollArea } from '@/components/ui/scroll-area';
+import { cn } from '@/lib/utils';
 import React from 'react';
 
-export const MapResultList = ({ resultList, onClickList }) => {
+export const MapResultList = ({ resultList, onClickList, selectedInfo }) => {
     return (
-        <>
+        <div
+            style={{
+                overflowY: 'auto',
+                maxHeight: '310px',
+            }}
+            className="border"
+        >
             {resultList.map((result) => (
                 <div
                     key={result.id}
-                    className="border-b px-4 py-2 text-xs space-y-2 hover:bg-red-200"
+                    className={cn(
+                        'px-4 py-2 text-xs space-y-2 border-b  cursor-pointer',
+                        selectedInfo &&
+                            selectedInfo.content === result.place_name &&
+                            'border border-red-400'
+                    )}
                     onClick={() => onClickList(result)}
                 >
                     <a
                         href={result.place_url}
                         target="_blank"
-                        className="font-semibold text-sm"
+                        className="font-semibold text-sm underline-offset-4 hover:underline"
                     >
                         {result.place_name}
                     </a>
@@ -29,6 +40,6 @@ export const MapResultList = ({ resultList, onClickList }) => {
                     <div>{result.phone}</div>
                 </div>
             ))}
-        </>
+        </div>
     );
 };

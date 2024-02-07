@@ -4,9 +4,10 @@ import { MapResultList } from './map-resultList';
 export const MapForm = ({
     inputValue,
     onChange,
-    handleSubmit,
+    handleSearch,
     resultList,
     onClickList,
+    selectedInfo,
 }) => {
     return (
         <div className="space-y-2 h-16 ">
@@ -19,13 +20,17 @@ export const MapForm = ({
                     onChange={onChange}
                 />
                 <button
-                    onClick={handleSubmit}
+                    onClick={handleSearch}
                     className=" bg-slate-300 hover:bg-slate-500 rounded-lg ml-10 px-2 py-1"
                 >
                     검색
                 </button>
             </div>
-            <MapResultList resultList={resultList} onClickList={onClickList} />
+            <MapResultList
+                selectedInfo={selectedInfo}
+                resultList={resultList}
+                onClickList={onClickList}
+            />
         </div>
     );
 };
