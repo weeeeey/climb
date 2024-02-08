@@ -7,18 +7,18 @@ const HomePage = async () => {
         <div className="flex flex-col justify-center items-start gap-y-10 ">
             <HotBody
                 likeArray={likeArray}
+                subCategory="spot"
+                category="review"
+            />
+            <HotBody
+                likeArray={likeArray}
                 subCategory="recruit"
                 category="crew"
             />
             <HotBody
                 likeArray={likeArray}
-                subCategory="information"
-                category="community"
-            />
-            <HotBody
-                likeArray={likeArray}
-                subCategory="spot"
-                category="review"
+                subCategory="oneTimeMeeting"
+                category="crew"
             />
         </div>
     );

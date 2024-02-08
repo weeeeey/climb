@@ -1,4 +1,4 @@
-import { hotTitleFont } from '@/font.config';
+import { boardTitleFont, hotTitleFont } from '@/font.config';
 import { HotCard } from './hot-card';
 import {
     Carousel,
@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { SafePost } from './hot-types';
 import { Flame } from 'lucide-react';
+import { hotTitle } from '@/config/data';
 
 interface HotMainProps {
     subCategory: string;
@@ -36,7 +37,10 @@ export const HotMain = ({
                 <Flame className="w-6 h-6 fill-red-500 text-red-500 " />
 
                 <Link href={`/${category}/${subCategory}`}>
-                    <span className="text-yellow-400">Hot</span> {category}
+                    <span className="text-yellow-400">Hot</span>{' '}
+                    <span className={boardTitleFont.className}>
+                        {hotTitle[subCategory as keyof typeof hotTitle]}
+                    </span>
                 </Link>
             </div>
             <CarouselContent>

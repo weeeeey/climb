@@ -1,3 +1,30 @@
+export const categories = ['crew', 'market', 'community', 'review'];
+
+export const subCategories = {
+    crew: ['oneTimeMeeting', 'recruit', 'introduce'],
+    market: [],
+    community: ['tip', 'information', 'humor', 'lost'],
+    review: ['spot', 'equipment'],
+};
+export const subCategoryKor = {
+    oneTimeMeeting: '번개 모임 게시판',
+    recruit: '크루 모집 게시판',
+    introduce: '크루 홍보 게시판',
+    tip: '클라이밍 팁 게시판',
+    information: '정보 공유 게시판',
+    humor: '유머 게시판',
+    lost: '분실물 게시판',
+    spot: '장소 후기 게시판',
+    equipment: '장비 후기 게시판',
+};
+
+export const hotTitle = {
+    spot: '지점',
+    recruit: '크루 모집',
+    oneTimeMeeting: '번개 모임',
+    introduce: '크루',
+};
+
 export const locationJSON = {
     '시/도 선택': ['구/군 선택'],
     서울특별시: [
@@ -255,24 +282,4 @@ export const locationJSON = {
         '합천군',
     ],
     제주특별자치도: ['구/군 선택', '서귀포시', '제주시'],
-};
-
-export const categories = ['crew', 'market', 'community', 'review'];
-
-export const subCategories = {
-    crew: ['oneTimeMeeting', 'recruit', 'introduce'],
-    market: [],
-    community: ['tip', 'information', 'humor', 'lost'],
-    review: ['spot', 'equipment'],
-};
-export const subCategoryKor = {
-    oneTimeMeeting: '번개 모임 게시판',
-    recruit: '크루 모집 게시판',
-    introduce: '크루 홍보 게시판',
-    tip: '클라이밍 팁 게시판',
-    information: '정보 공유 게시판',
-    humor: '유머 게시판',
-    lost: '분실물 게시판',
-    spot: '장소 후기 게시판',
-    equipment: '장비 후기 게시판',
 };
