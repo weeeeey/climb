@@ -1,6 +1,8 @@
+'use client';
 import { cn } from '@/lib/utils';
 import { Profile } from '@prisma/client';
 import { Pencil } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 interface PostDeleteProps {
@@ -14,12 +16,9 @@ export const PostUpdate = ({
     loginedProfile,
     postId,
 }: PostDeleteProps) => {
-    const handleUpdate = async () => {
-        try {
-            console.log(postId);
-        } catch (error) {
-            console.log(error);
-        }
+    const router = useRouter();
+    const handleUpdate = () => {
+        router.push(`/modify/${postId}`);
     };
     return (
         <button

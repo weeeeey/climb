@@ -10,12 +10,27 @@ import axios from 'axios';
 
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Form } from '@/components/ui/form';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { MyFiledValues } from '@/components/new/new-types';
 import toast from 'react-hot-toast';
 import { useState } from 'react';
 import { Loading } from '@/components/loading';
+
+import React from 'react';
+import { Form } from '../ui/form';
+
+interface NewBodyProps {
+    url: string;
+    method: string;
+    athuorId?: string;
+    initialCategory?: string | null;
+    initialSubCategory?: string | null;
+    initialTitle?: string | null;
+    initialContent?: string | null;
+    initialCity?: string | null;
+    initialGu?: string | null;
+    initialPlace?: string | null;
+}
 
 const FormSchema = z.object({
     category: z.string().min(1),
@@ -27,45 +42,63 @@ const FormSchema = z.object({
     place: z.string().optional(),
 });
 
-const NewPpage = () => {
+export const NewBody = ({
+    url,
+    method,
+    athuorId,
+    initialCategory,
+    initialCity,
+    initialContent,
+    initialGu,
+    initialPlace,
+    initialSubCategory,
+    initialTitle,
+}: NewBodyProps) => {
     const [isLoading, setisLoading] = useState(false);
     const router = useRouter();
-    const searchParams = useSearchParams();
-
-    const urlCategory = searchParams.get('category');
-    const urlSubCategory = searchParams.get('subCategory');
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
 
         defaultValues: {
-            subCategory: urlSubCategory || undefined,
-            category: urlCategory || undefined,
+            subCategory: initialSubCategory || undefined,
+            category: initialCategory || undefined,
+            city: initialCity || undefined,
+            content: initialContent || undefined,
+            gu: initialGu || undefined,
+            place: initialPlace || undefined,
+            title: initialTitle || undefined,
         },
     });
 
     if (isLoading) {
         return <Loading />;
     }
+
     async function onSubmit(data: z.infer<typeof FormSchema>) {
         try {
             setisLoading(true);
             const { category, content, subCategory, title, city, gu, place } =
                 data;
 
-            const res = await axios.post('/api/post', {
-                category,
-                title,
-                content,
-                subCategory,
-                city,
-                gu,
-                place,
+            const res = await axios({
+                url,
+                method,
+                data: {
+                    category,
+                    title,
+                    content,
+                    subCategory,
+                    city,
+                    gu,
+                    place,
+                    athuorId,
+                },
             });
             if (res.status === 200) {
                 router.refresh();
                 toast.success('Success');
-                router.push(`/post/${res.data.id}`);
+                router.push(`/post/${res.data}`);
             }
         } catch (error) {
             console.log(error);
@@ -73,8 +106,10 @@ const NewPpage = () => {
             setisLoading(false);
         }
     }
+    function inValidSubmit(errors: FieldErrors<MyFiledValues>) {
+        console.log(errors);
+    }
 
-    function inValidSubmit(errors: FieldErrors<MyFiledValues>) {}
     return (
         <Form {...form}>
             <form
@@ -90,5 +125,3 @@ const NewPpage = () => {
         </Form>
     );
 };
-
-export default NewPpage;

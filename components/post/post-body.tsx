@@ -60,6 +60,7 @@ export const PostBody = ({ postId, loginedProfile }: PostBodyProps) => {
                 title={post.title}
                 viewed={post.viewed}
                 createdAt={post.createdAt}
+                updatedAt={post.updatedAt}
                 like={likeCount}
             />
             <PostContent content={post.content} />
