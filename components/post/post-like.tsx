@@ -57,7 +57,7 @@ export const PostLike = ({
         <button onClick={handleClick}>
             <Heart
                 className={cn(
-                    'w-8 h-8 hover:text-slate-400',
+                    'w-8 h-8 hover:text-red-500',
                     isLike && 'fill-red-500 text-red-500'
                 )}
             />

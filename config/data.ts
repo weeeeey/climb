@@ -2,7 +2,7 @@ export const categories = ['crew', 'market', 'community', 'review'];
 
 export const subCategories = {
     crew: ['oneTimeMeeting', 'recruit', 'introduce'],
-    market: [],
+    market: [''],
     community: ['tip', 'information', 'humor', 'lost'],
     review: ['spot', 'equipment'],
 };

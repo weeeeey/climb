@@ -69,6 +69,7 @@ export const PostBody = ({ postId, loginedProfile }: PostBodyProps) => {
                 loginedProfile={loginedProfile}
                 onChangeCnt={onChangeCnt}
                 postId={postId}
+                athuorId={post.profile.id}
             />
             <CommentBody
                 loginedProfile={loginedProfile}

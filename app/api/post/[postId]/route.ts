@@ -1,3 +1,4 @@
+import currentProfile from '@/action/current-profile';
 import { db } from '@/lib/db';
 import { NextResponse } from 'next/server';
 
@@ -24,6 +25,7 @@ export async function GET(
                 profile: {
                     select: {
                         name: true,
+                        id: true,
                     },
                 },
                 comments: {
@@ -95,7 +97,12 @@ export async function DELETE(
 ) {
     try {
         const { postId } = params;
-
+        const body = await req.json();
+        const { athuorId } = body;
+        const curProfile = await currentProfile();
+        if (!curProfile || curProfile.id !== athuorId) {
+            return new NextResponse('Unauthorized User', { status: 400 });
+        }
         if (!postId) {
             return new NextResponse('invalid postId', { status: 400 });
         }
@@ -103,9 +110,16 @@ export async function DELETE(
             where: {
                 id: postId,
             },
+            select: {
+                subCategory: {
+                    select: {
+                        name: true,
+                    },
+                },
+            },
         });
 
-        return NextResponse.json(post);
+        return NextResponse.json(post.subCategory.name, { status: 200 });
     } catch (error) {
         return new NextResponse('internal error', { status: 500 });
     }

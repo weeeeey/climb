@@ -48,9 +48,7 @@ export const NavItem = ({ title, url }: NavItemProps) => {
     return (
         <DropdownMenu open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <DropdownMenuTrigger
-                onPointerEnter={() => setIsMenuOpen(true)}
-                onPointerLeave={() => setIsMenuOpen(false)}
-                onClick={() => handleClick()}
+                onClick={() => setIsMenuOpen(true)}
                 className={cn(
                     'text-base sm:text-2xl outline-none ',
                     selectedFont(url, pathName)
