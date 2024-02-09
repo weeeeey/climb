@@ -33,20 +33,13 @@ export const TypeMapBody = ({ field, title }: MapBodyProps) => {
 
     useEffect(() => {
         if (!map) return;
-        if (field.value) {
-            searchLocation({
-                inputValue: field.value.place,
-                map,
-                setMarkers,
-                setResultList,
-            });
-        }
     }, [map]);
 
     useEffect(() => {
         getCurLocation({
             setInitialLocation,
             setMarkers,
+            location: field.value,
         });
     }, []);
 

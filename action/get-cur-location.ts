@@ -3,13 +3,36 @@ import { MakerType } from '@/components/new/map/type-map-body';
 interface getCurLocationProps {
     setInitialLocation: ({ content, position }: MakerType) => void;
     setMarkers: ([{ content, position }]: MakerType[]) => void;
+    location?: {
+        place?: string | undefined;
+        lat?: number | undefined;
+        lng?: number | undefined;
+    };
 }
 
 export const getCurLocation = ({
     setInitialLocation,
     setMarkers,
+    location,
 }: getCurLocationProps) => {
-    if ('geolocation' in navigator) {
+    if (location?.place && location.lat && location.lng) {
+        setInitialLocation({
+            content: location.place,
+            position: {
+                lat: location.lat,
+                lng: location.lng,
+            },
+        });
+        setMarkers([
+            {
+                content: location.place,
+                position: {
+                    lat: location.lat,
+                    lng: location.lng,
+                },
+            },
+        ]);
+    } else if ('geolocation' in navigator) {
         const sucessGet = (position: GeolocationPosition) => {
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;

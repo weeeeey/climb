@@ -9,9 +9,9 @@ export interface MyFiledValues {
     city?: string;
     gu?: string;
     location?: {
-        place: string;
-        lat: number;
-        lng: number;
+        place?: string;
+        lat?: number;
+        lng?: number;
     };
 }
 

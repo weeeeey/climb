@@ -30,6 +30,8 @@ interface NewBodyProps {
     initialCity?: string | null;
     initialGu?: string | null;
     initialPlace?: string | null;
+    initialLat?: number | null;
+    initialLng?: number | null;
 }
 
 const FormSchema = z.object({
@@ -41,9 +43,9 @@ const FormSchema = z.object({
     gu: z.string().optional(),
     location: z
         .object({
-            place: z.string(),
-            lat: z.number(),
-            lng: z.number(),
+            place: z.string().optional(),
+            lat: z.number().optional(),
+            lng: z.number().optional(),
         })
         .optional(),
 });
@@ -59,6 +61,8 @@ export const NewBody = ({
     initialPlace,
     initialSubCategory,
     initialTitle,
+    initialLat,
+    initialLng,
 }: NewBodyProps) => {
     const [isLoading, setisLoading] = useState(false);
     const router = useRouter();
@@ -73,6 +77,11 @@ export const NewBody = ({
             content: initialContent || undefined,
             gu: initialGu || undefined,
             title: initialTitle || undefined,
+            location: {
+                lat: initialLat || undefined,
+                lng: initialLng || undefined,
+                place: initialPlace || undefined,
+            },
         },
     });
 
