@@ -187,6 +187,7 @@ export async function PUT(
                 city,
                 gu,
                 place,
+                contentUpdatedAt: new Date(),
             },
         });
 

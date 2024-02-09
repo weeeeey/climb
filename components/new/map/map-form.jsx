@@ -1,4 +1,3 @@
-import React from 'react';
 import { MapResultList } from './map-resultList';
 
 export const MapForm = ({

@@ -18,7 +18,7 @@ export const CardBody = ({ post, subCategory, likeArray }: CardBodyProps) => {
                 city={post.city}
                 gu={post.gu}
                 subCategory={subCategory}
-                author={post.profile.name}
+                place={post.place}
             />
             <CardContentComponent date={post.createdAt} title={post.title} />
             <CardFooterComponent

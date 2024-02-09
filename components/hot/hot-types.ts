@@ -1,21 +1,15 @@
-import { SubCategory } from '@prisma/client';
+import { Post, SubCategory } from '@prisma/client';
 
-export type SafePost = {
-    id: string;
-    title: string;
-    createdAt: Date;
-    viewed: number;
-    like: number;
+export interface SafePost extends Omit<Post, 'city' | 'gu'> {
     profile: {
         name: string;
     };
-
-    city: string | undefined;
-    gu: string | undefined;
     _count: {
         comments: number;
     };
-};
+    city: string | undefined;
+    gu: string | undefined;
+}
 
 export interface SafeHotSubCategory extends SubCategory {
     posts: SafePost[];

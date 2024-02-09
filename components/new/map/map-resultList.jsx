@@ -17,6 +17,8 @@ export const MapResultList = ({ resultList, onClickList, selectedInfo }) => {
                         'px-4 py-2 text-xs space-y-2 border-b  cursor-pointer',
                         selectedInfo &&
                             selectedInfo.content === result.place_name &&
+                            selectedInfo.position.lat === result.y &&
+                            selectedInfo.position.lng === result.x &&
                             'border border-red-400'
                     )}
                     onClick={() => onClickList(result)}

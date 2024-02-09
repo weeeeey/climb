@@ -48,6 +48,7 @@ model Post {
   gu String?
   marketPrice Int? @default(0)
   place String?
+  contentUpdatedAt DateTime?
 
 
   images Image[]

@@ -47,7 +47,7 @@ export const HotMain = ({
                 {posts.map((post: SafePost) => (
                     <CarouselItem
                         key={post.id}
-                        className="sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+                        className="basis-1/2 md:basis-1/3 lg:basis-1/4"
                     >
                         <HotCard
                             post={post}
@@ -57,8 +57,8 @@ export const HotMain = ({
                     </CarouselItem>
                 ))}
             </CarouselContent>
-            <CarouselPrevious className="ml-5 sm:ml-0" />
-            <CarouselNext className="mr-5 sm:mr-0 " />
+            <CarouselPrevious className="ml-2" />
+            <CarouselNext className="mr-2  " />
         </Carousel>
     );
 };

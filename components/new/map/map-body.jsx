@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { MapForm } from './map-form';
 import { MapMain } from './map-main';
 import { Loading } from '@/components/loading';
+import { getCurLocation } from '@/action/get-cur-location';
+import { searchLocation } from '@/action/search-location';
 
 export default function MapBody({ field, title }) {
     const [initialLocation, setInitialLocation] = useState();
@@ -16,44 +18,21 @@ export default function MapBody({ field, title }) {
 
     useEffect(() => {
         if (!map) return;
+        if (field.value) {
+            searchLocation({
+                inputValue: field.value,
+                map,
+                setMarkers,
+                setResultList,
+            });
+        }
     }, [map]);
 
     useEffect(() => {
-        if ('geolocation' in navigator) {
-            function sucessGet(position) {
-                const latitude = position.coords.latitude;
-                const longitude = position.coords.longitude;
-
-                setInitialLocation({
-                    content: '현재위치',
-                    position: {
-                        lat: latitude,
-                        lng: longitude,
-                    },
-                });
-                setMarkers([
-                    {
-                        content: '현재위치',
-                        position: {
-                            lat: latitude,
-                            lng: longitude,
-                        },
-                    },
-                ]);
-            }
-            function denyGet() {
-                setInitialLocation({
-                    position: {
-                        lat: 33.450701,
-                        lng: 126.570667,
-                    },
-                });
-            }
-            navigator.geolocation.getCurrentPosition(sucessGet, denyGet);
-        } else {
-            console.log('Geolocation을 지원하지 않습니다.');
-            denyGet();
-        }
+        getCurLocation({
+            setInitialLocation,
+            setMarkers,
+        });
     }, []);
 
     const onChange = (v) => {
@@ -65,43 +44,28 @@ export default function MapBody({ field, title }) {
     };
     const onClickList = (clickMarker) => {
         markers.forEach((marker) => {
-            if (marker.content === clickMarker.place_name) {
+            if (
+                marker.content === clickMarker.place_name &&
+                marker.position.lat === clickMarker.y &&
+                marker.position.lng === clickMarker.x
+            ) {
                 handleSelectedMarker(marker);
             }
         });
     };
     const handleSearch = (e) => {
-        e.preventdefault;
         if (!inputValue.replace(/^\s+|\s+$/g, '')) {
             alert('키워드를 입력해주세요!');
-            return false;
+            return;
         }
-
-        const ps = new kakao.maps.services.Places();
-        ps.keywordSearch(inputValue, (result, status) => {
-            if (status === kakao.maps.services.Status.OK) {
-                const bounds = new kakao.maps.LatLngBounds();
-                let markers = [];
-                setResultList([...result]);
-                for (var i = 0; i < result.length; i++) {
-                    markers.push({
-                        position: {
-                            lat: result[i].y,
-                            lng: result[i].x,
-                        },
-                        content: result[i].place_name,
-                    });
-                    bounds.extend(
-                        new kakao.maps.LatLng(result[i].y, result[i].x)
-                    );
-                }
-                setMarkers(markers);
-
-                map.setBounds(bounds);
-            } else {
-                window.alert('검색된 결과가 없어요ㅜㅜ');
-            }
+        searchLocation({
+            inputValue,
+            map,
+            setMarkers,
+            setResultList,
         });
+
+        e.preventDefault();
     };
     if (!initialLocation) {
         return <Loading />;

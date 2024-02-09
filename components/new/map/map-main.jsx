@@ -10,6 +10,8 @@ export const MapMain = ({
     setMap,
     initialLocation,
 }) => {
+    console.log('info', info);
+    console.log('markers', markers);
     return (
         <Map // 로드뷰를 표시할 Container
             center={{
@@ -47,7 +49,7 @@ export const MapMain = ({
                     }
                     zIndex={marker === selectedInfo && 1}
                 >
-                    {info && info.content === marker.content && (
+                    {info && info === marker && (
                         <div className="px-2  text-nowrap ">
                             {marker.content}
                         </div>

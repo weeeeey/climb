@@ -4,10 +4,8 @@ import {
     differenceInHours,
 } from 'date-fns';
 
-export const getDiffDate = (crt: string, ut: string) => {
-    console.log(crt);
-    console.log(ut);
-    if (crt === ut) {
+export const getDiffDate = (ut: string) => {
+    if (ut === null) {
         return '';
     }
     const curDate = new Date();

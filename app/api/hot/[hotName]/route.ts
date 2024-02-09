@@ -36,6 +36,7 @@ export async function GET(
                         title: true,
                         viewed: true,
                         like: true,
+                        place: true,
                         profile: {
                             select: {
                                 name: true,

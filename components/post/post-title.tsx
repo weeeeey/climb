@@ -25,7 +25,7 @@ export const PostTitle = ({
                 <span className="font-bold text-xl">
                     {title}
                     <span className="text-xs font-light">
-                        {getDiffDate(createdAt, updatedAt)}
+                        {getDiffDate(updatedAt)}
                     </span>
                 </span>
                 <span className="text-sm text-slate-600 ">
