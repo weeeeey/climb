@@ -8,7 +8,6 @@ export interface MyFiledValues {
     content: string;
     city?: string;
     gu?: string;
-    place?: string;
     location?: {
         place: string;
         lat: number;

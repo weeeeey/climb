@@ -11,7 +11,17 @@ export async function POST(req: Request) {
             return new NextResponse('Unauthorized User', { status: 401 });
         }
         const body = await req.json();
-        const { category, subCategory, title, content, city, gu, place } = body;
+        const {
+            category,
+            subCategory,
+            title,
+            content,
+            city,
+            gu,
+            place,
+            lat,
+            lng,
+        } = body;
 
         if (!categories.includes(category)) {
             return new NextResponse('invalid date', { status: 400 });
@@ -44,6 +54,8 @@ export async function POST(req: Request) {
                 city,
                 gu,
                 place,
+                lat,
+                lng,
             },
         });
 

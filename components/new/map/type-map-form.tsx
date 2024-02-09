@@ -1,4 +1,3 @@
-import { MapResultList } from './map-resultList';
 import { MakerType } from './type-map-body';
 import { TypeMapResultList } from './type-map-resultList';
 

@@ -15,7 +15,6 @@ import {
 import { Control, ControllerRenderProps } from 'react-hook-form';
 import { CategoryType, MyFiledValues } from './new-types';
 import { subCategories } from '@/config/data';
-import MapBody from './map/map-body';
 import { TypeMapBody } from './map/type-map-body';
 
 interface NewSelectProps {
@@ -56,7 +55,7 @@ export const NewSubSelect = ({
             {field.value === 'spot' && (
                 <FormField
                     control={control}
-                    name="place"
+                    name="location"
                     render={({ field }) => (
                         <TypeMapBody
                             title="[다녀오신 지점을 알려주세요]"

@@ -147,6 +147,8 @@ export async function PUT(
             city,
             gu,
             place,
+            lat,
+            lng,
         } = body;
         const curProfile = await currentProfile();
         if (!curProfile || curProfile.id !== athuorId) {
@@ -188,6 +190,8 @@ export async function PUT(
                 gu,
                 place,
                 contentUpdatedAt: new Date(),
+                lat,
+                lng,
             },
         });
 
