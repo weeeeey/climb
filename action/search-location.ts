@@ -1,18 +1,10 @@
-import React from 'react';
-
-type MakerType = {
-    position: {
-        lat: string;
-        lng: string;
-    };
-    content: string;
-};
+import { MakerType } from '@/components/new/map/type-map-body';
 
 interface SearchLocationProps {
     inputValue: string;
     setResultList: (result: kakao.maps.services.PlacesSearchResult) => void;
     setMarkers: (markers: MakerType[]) => void;
-    map: kakao.maps.Map;
+    map: kakao.maps.Map | undefined;
 }
 export const searchLocation = ({
     inputValue,
@@ -20,6 +12,9 @@ export const searchLocation = ({
     setMarkers,
     map,
 }: SearchLocationProps) => {
+    if (!map) {
+        return;
+    }
     const ps = new kakao.maps.services.Places();
     ps.keywordSearch(inputValue, (result, status) => {
         if (status === kakao.maps.services.Status.OK) {
@@ -30,8 +25,8 @@ export const searchLocation = ({
             for (var i = 0; i < result.length; i++) {
                 markers.push({
                     position: {
-                        lat: result[i].y,
-                        lng: result[i].x,
+                        lat: +result[i].y,
+                        lng: +result[i].x,
                     },
                     content: result[i].place_name,
                 });

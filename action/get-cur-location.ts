@@ -1,14 +1,8 @@
-type IProps = {
-    content?: string;
-    position: {
-        lat: number;
-        lng: number;
-    };
-};
+import { MakerType } from '@/components/new/map/type-map-body';
 
 interface getCurLocationProps {
-    setInitialLocation: ({ content, position }: IProps) => void;
-    setMarkers: ([{ content, position }]: IProps[]) => void;
+    setInitialLocation: ({ content, position }: MakerType) => void;
+    setMarkers: ([{ content, position }]: MakerType[]) => void;
 }
 
 export const getCurLocation = ({
