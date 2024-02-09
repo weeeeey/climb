@@ -9,6 +9,11 @@ export interface MyFiledValues {
     city?: string;
     gu?: string;
     place?: string;
+    location?: {
+        place: string;
+        lat: number;
+        lng: number;
+    };
 }
 
 export interface EditorProvideProps {

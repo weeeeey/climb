@@ -32,18 +32,6 @@ export const NavItem = ({ title, url }: NavItemProps) => {
     const handleClick = (sub: string = '') => {
         router.push(`/${url}/${sub}`);
     };
-    if (url === 'market') {
-        return (
-            <div
-                className={cn(
-                    'text-base sm:text-2xl outline-none ',
-                    selectedFont(url, pathName)
-                )}
-            >
-                {title}
-            </div>
-        );
-    }
 
     return (
         <DropdownMenu open={isMenuOpen} onOpenChange={setIsMenuOpen}>

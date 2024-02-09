@@ -10,8 +10,6 @@ export const MapMain = ({
     setMap,
     initialLocation,
 }) => {
-    console.log('info', info);
-    console.log('markers', markers);
     return (
         <Map // 로드뷰를 표시할 Container
             center={{

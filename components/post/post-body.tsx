@@ -63,7 +63,7 @@ export const PostBody = ({ postId, loginedProfile }: PostBodyProps) => {
                 updatedAt={post.contentUpdatedAt}
                 like={likeCount}
             />
-            <PostContent content={post.content} />
+            <PostContent content={post.content} place={post.place} />
             <Separator />
             <PostButton
                 onFocusCommentForm={onFocusCommentForm}

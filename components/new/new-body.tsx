@@ -8,7 +8,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 import axios from 'axios';
 
-import { z } from 'zod';
+import { string, z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { MyFiledValues } from '@/components/new/new-types';
@@ -40,6 +40,13 @@ const FormSchema = z.object({
     city: z.string().optional(),
     gu: z.string().optional(),
     place: z.string().optional(),
+    location: z
+        .object({
+            place: z.string(),
+            lat: z.number(),
+            lng: z.number(),
+        })
+        .optional(),
 });
 
 export const NewBody = ({

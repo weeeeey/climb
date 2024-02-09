@@ -44,11 +44,14 @@ model Post {
   like Int @default(0)
   viewed Int @default(0)
   
+  contentUpdatedAt DateTime?
   city String?
   gu String?
+
   marketPrice Int? @default(0)
   place String?
-  contentUpdatedAt DateTime?
+  lat Float?
+  lng Float?
 
 
   images Image[]

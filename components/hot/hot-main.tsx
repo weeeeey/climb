@@ -27,7 +27,7 @@ export const HotMain = ({
     likeArray,
 }: HotMainProps) => {
     return (
-        <Carousel className="w-full ">
+        <Carousel className="w-full">
             <div
                 className={cn(
                     'text-xl flex justify-start items-center',
@@ -43,7 +43,8 @@ export const HotMain = ({
                     </span>
                 </Link>
             </div>
-            <CarouselContent>
+
+            <CarouselContent className="overflow-x-auto overflow-y-hidden">
                 {posts.map((post: SafePost) => (
                     <CarouselItem
                         key={post.id}
@@ -57,8 +58,9 @@ export const HotMain = ({
                     </CarouselItem>
                 ))}
             </CarouselContent>
+
             <CarouselPrevious className="ml-2" />
-            <CarouselNext className="mr-2  " />
+            <CarouselNext className="mr-2 " />
         </Carousel>
     );
 };
