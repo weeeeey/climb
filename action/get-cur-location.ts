@@ -64,7 +64,7 @@ export const getCurLocation = ({
         };
         navigator.geolocation.getCurrentPosition(sucessGet, denyGet);
     } else {
-        console.log('Geolocation을 지원하지 않습니다.');
+        console.log('Geolocation을 지원하지 않아요.');
         setInitialLocation({
             position: {
                 lat: 33.450701,
