@@ -55,7 +55,7 @@ export const NewSubSelect = ({
             {field.value === 'spot' && (
                 <FormField
                     control={control}
-                    name="place"
+                    name="location"
                     render={({ field }) => (
                         <TypeMapBody
                             title="[다녀오신 지점을 알려주세요]"

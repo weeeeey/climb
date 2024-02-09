@@ -9,7 +9,7 @@ import { TypeMapMain } from './type-map-main';
 import { TypeMapForm } from './type-map-form';
 
 interface MapBodyProps {
-    field: ControllerRenderProps<MyFiledValues, 'place'>;
+    field: ControllerRenderProps<MyFiledValues, 'location'>;
     title: string;
 }
 
@@ -33,20 +33,13 @@ export const TypeMapBody = ({ field, title }: MapBodyProps) => {
 
     useEffect(() => {
         if (!map) return;
-        if (field.value) {
-            searchLocation({
-                inputValue: field.value,
-                map,
-                setMarkers,
-                setResultList,
-            });
-        }
     }, [map]);
 
     useEffect(() => {
         getCurLocation({
             setInitialLocation,
             setMarkers,
+            location: field.value,
         });
     }, []);
 
@@ -55,7 +48,11 @@ export const TypeMapBody = ({ field, title }: MapBodyProps) => {
     };
     const handleSelectedMarker = (markerInMap: MakerType) => {
         setSelectedInfo(markerInMap);
-        field.onChange(markerInMap.content);
+        field.onChange({
+            place: markerInMap.content,
+            lat: markerInMap.position.lat,
+            lng: markerInMap.position.lng,
+        });
     };
     const onClickList = (
         clickMarker: kakao.maps.services.PlacesSearchResultItem

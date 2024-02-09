@@ -53,6 +53,8 @@ const ModifyPage = async ({ params }: { params: { postId: string } }) => {
             initialSubCategory={post.subCategory.name}
             initialCategory={post.subCategory.category.name.toLowerCase()}
             initialTitle={post.title}
+            initialLat={post.lat}
+            initialLng={post.lng}
         />
     );
 };

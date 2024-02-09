@@ -8,7 +8,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 import axios from 'axios';
 
-import { string, z } from 'zod';
+import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { MyFiledValues } from '@/components/new/new-types';
@@ -30,6 +30,8 @@ interface NewBodyProps {
     initialCity?: string | null;
     initialGu?: string | null;
     initialPlace?: string | null;
+    initialLat?: number | null;
+    initialLng?: number | null;
 }
 
 const FormSchema = z.object({
@@ -39,12 +41,11 @@ const FormSchema = z.object({
     content: z.string().min(1),
     city: z.string().optional(),
     gu: z.string().optional(),
-    place: z.string().optional(),
     location: z
         .object({
-            place: z.string(),
-            lat: z.number(),
-            lng: z.number(),
+            place: z.string().optional(),
+            lat: z.number().optional(),
+            lng: z.number().optional(),
         })
         .optional(),
 });
@@ -60,6 +61,8 @@ export const NewBody = ({
     initialPlace,
     initialSubCategory,
     initialTitle,
+    initialLat,
+    initialLng,
 }: NewBodyProps) => {
     const [isLoading, setisLoading] = useState(false);
     const router = useRouter();
@@ -73,8 +76,12 @@ export const NewBody = ({
             city: initialCity || undefined,
             content: initialContent || undefined,
             gu: initialGu || undefined,
-            place: initialPlace || undefined,
             title: initialTitle || undefined,
+            location: {
+                lat: initialLat || undefined,
+                lng: initialLng || undefined,
+                place: initialPlace || undefined,
+            },
         },
     });
 
@@ -85,8 +92,15 @@ export const NewBody = ({
     async function onSubmit(data: z.infer<typeof FormSchema>) {
         try {
             setisLoading(true);
-            const { category, content, subCategory, title, city, gu, place } =
-                data;
+            const {
+                category,
+                content,
+                subCategory,
+                title,
+                city,
+                gu,
+                location,
+            } = data;
 
             const res = await axios({
                 url,
@@ -98,7 +112,9 @@ export const NewBody = ({
                     subCategory,
                     city,
                     gu,
-                    place,
+                    place: location?.place,
+                    lat: location?.lat,
+                    lng: location?.lng,
                     athuorId,
                 },
             });

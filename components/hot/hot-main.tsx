@@ -44,7 +44,7 @@ export const HotMain = ({
                 </Link>
             </div>
 
-            <CarouselContent className="overflow-x-auto overflow-y-hidden">
+            <CarouselContent className="overflow-x-auto  overflow-y-hidden">
                 {posts.map((post: SafePost) => (
                     <CarouselItem
                         key={post.id}

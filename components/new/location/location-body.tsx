@@ -36,7 +36,7 @@ export const LocationBody = ({ control }: LocationBodyProps) => {
             )}
             <FormField
                 control={control}
-                name="place"
+                name="location"
                 render={({ field }) => (
                     <TypeMapBody
                         title="(옵션) 크루의 아지트가 있으실까요?"

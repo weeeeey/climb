@@ -5,9 +5,11 @@ import { PostMap } from './post-map';
 interface PostContentProps {
     content: string;
     place?: string | undefined;
+    lat?: number | undefined;
+    lng?: number | undefined;
 }
 
-export const PostContent = ({ content, place }: PostContentProps) => {
+export const PostContent = ({ content, place, lat, lng }: PostContentProps) => {
     return (
         <div className="space-y-5 px-3">
             <div
@@ -20,7 +22,7 @@ export const PostContent = ({ content, place }: PostContentProps) => {
                     whiteSpace: 'pre-wrap',
                 }}
             />
-            {place && <PostMap />}
+            {place && <PostMap place={place} lat={lat} lng={lng} />}
         </div>
     );
 };
