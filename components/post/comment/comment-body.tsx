@@ -2,7 +2,7 @@
 import { Profile } from '@prisma/client';
 import { CommentForm } from './comment-form';
 import { CommentMain } from './comment-main';
-import { RefObject, useEffect, useState } from 'react';
+import { RefObject, useState } from 'react';
 import { useQueryContent } from '@/lib/use-query-content';
 import { Loading } from '@/components/loading';
 import { ErrorPage } from '@/components/error';
@@ -55,7 +55,6 @@ export const CommentBody = ({
     async function refetchComments() {
         try {
             // 새로운 댓글을 등록한 후에 댓글을 다시 불러옵니다.
-
             await queryClient.invalidateQueries({
                 queryKey: ['comment', postId],
             });

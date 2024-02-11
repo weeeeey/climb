@@ -9,14 +9,9 @@ import {
 
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Profile } from '@prisma/client';
-import React, { RefObject, useState } from 'react';
+import React, { RefObject } from 'react';
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { UseFormReturn, useForm } from 'react-hook-form';
-import { z } from 'zod';
-import axios from 'axios';
-import toast from 'react-hot-toast';
+import { UseFormReturn } from 'react-hook-form';
 
 interface CommentFormProps {
     formRef: RefObject<HTMLTextAreaElement>;

@@ -29,7 +29,8 @@
         ".next/types/**/*.ts",
         "components/new/map/map-body.jsx",
         "components/new/map/map-resultList.jsx",
-        "components/new/map/map-form.jsx"
+        "components/new/map/map-form.jsx",
+        "app/prac/page.jsx"
     ],
     "exclude": ["node_modules"]
 }
