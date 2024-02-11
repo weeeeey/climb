@@ -27,8 +27,8 @@ export const TypeMapMain = ({
                 lat: initialLocation.position.lat,
                 lng: initialLocation.position.lng,
             }}
+            className="w-1/2"
             style={{
-                width: '50%',
                 height: '350px',
             }}
             level={4}

@@ -103,7 +103,7 @@ export const CommentBody = ({
     }
     return (
         <>
-            <CommentMain comments={comments} />
+            <CommentMain comments={comments} loginedProfile={loginedProfile} />
             <CommentForm
                 form={form}
                 formRef={formRef}

@@ -54,7 +54,7 @@ model Post {
   lng Float?
 
 
-  images Image[]
+  thumnailImageUrl String? 
 
   profileId String @db.ObjectId
   profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
@@ -126,17 +126,7 @@ model SubCategory {
 }
 
 
-model Image {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  postId String   @db.ObjectId // Foreign Key to post
-  post   Post  @relation(fields: [postId], references: [id], onDelete: Cascade)
-  url       String // URL of the image
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([postId])
-}
 
 model DirectMessage {
   id String @id @default(auto()) @map("_id") @db.ObjectId()

@@ -12,7 +12,7 @@ interface NewSelectProps {
 
 export const NewSelectBody = ({ control }: NewSelectProps) => {
     return (
-        <div className="w-full md:w-1/2  pb-20 space-y-12 md:gap-y-0">
+        <div className="w-full   pb-20 space-y-12 md:gap-y-0 ">
             <FormField
                 control={control}
                 name="category"

@@ -18,6 +18,7 @@ import { Loading } from '@/components/loading';
 
 import React from 'react';
 import { Form } from '../ui/form';
+import { NewImage } from './new-image';
 
 interface NewBodyProps {
     url: string;
@@ -137,7 +138,7 @@ export const NewBody = ({
         <Form {...form}>
             <form
                 onSubmit={form.handleSubmit(onSubmit, inValidSubmit)}
-                className="space-y-10"
+                className="space-y-10 "
             >
                 <NewTitle number={1} text="카테고리를 골라주세요!" />
                 <NewSelectBody control={form.control} />

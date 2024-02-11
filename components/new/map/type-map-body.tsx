@@ -86,7 +86,7 @@ export const TypeMapBody = ({ field, title }: MapBodyProps) => {
     }
 
     return (
-        <div className="space-y-2">
+        <div className="space-y-2 w-full">
             <div>{title}</div>
             <div className="flex space-x-2">
                 <TypeMapMain

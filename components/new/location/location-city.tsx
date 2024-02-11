@@ -31,7 +31,7 @@ export const LocationCity = ({ field, onCityChange }: LocationProps) => {
         onCityChange(value);
     };
     return (
-        <FormItem>
+        <FormItem className="w-1/2">
             <FormLabel>도시</FormLabel>
             <Select onValueChange={handleChange} defaultValue={field.value}>
                 <FormControl>

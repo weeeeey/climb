@@ -1,3 +1,4 @@
+import currentProfile from '@/action/current-profile';
 import { db } from '@/lib/db';
 import { NextResponse } from 'next/server';
 
@@ -69,5 +70,27 @@ export async function POST(
         return NextResponse.json(newComment);
     } catch (error) {
         return new NextResponse('internal error', { status: 500 });
+    }
+}
+
+export async function DELETE(
+    req: Request,
+    { params }: { params: { postId: string } }
+) {
+    try {
+        const body = await req.json();
+        const { authorId, commentId } = body;
+        const curProfile = await currentProfile();
+        if (!curProfile || curProfile.id !== authorId) {
+            return new NextResponse('UnAthourized User');
+        }
+        const res = db.comment.delete({
+            where: {
+                id: commentId,
+            },
+        });
+        return NextResponse.json(res);
+    } catch (error) {
+        return new NextResponse('internal erorr', { status: 500 });
     }
 }

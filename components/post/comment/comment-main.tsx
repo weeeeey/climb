@@ -1,15 +1,14 @@
-import Image from 'next/image';
 import { SafeCommentType } from './comment-types';
-import { format } from 'date-fns';
-import { Separator } from '@/components/ui/separator';
 import { CommentUser } from './comment-user';
 import CommentText from './comment-text';
+import { Profile } from '@prisma/client';
 
 interface CommentMainProps {
     comments: SafeCommentType[];
+    loginedProfile: Profile | undefined;
 }
 
-export const CommentMain = ({ comments }: CommentMainProps) => {
+export const CommentMain = ({ comments, loginedProfile }: CommentMainProps) => {
     if (comments.length === 0) {
         return (
             <div className="text-neutral-400 ">
@@ -28,6 +27,7 @@ export const CommentMain = ({ comments }: CommentMainProps) => {
                     />
 
                     <CommentText
+                        isAtuor={loginedProfile?.id === comment.profileId}
                         text={comment.text}
                         isLast={idx + 1 === comments.length}
                     />

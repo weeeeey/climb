@@ -21,18 +21,18 @@ export const TypeMapForm = ({
     selectedInfo,
 }: TypeMapFormProps) => {
     return (
-        <div className="space-y-2 h-16 ">
-            <div className="flex space-x-2 justify-start items-center">
+        <div className="space-y-2 h-16 w-1/2 ">
+            <div className="flex space-x-2 justify-start items-start relative">
                 <input
                     type="text"
-                    className="border-2 px-2 py-1 rounded-md  "
+                    className="border-2 pl-2 py-2 rounded-md w-full pr-12  "
                     placeholder="장소를 검색해 주세요"
                     value={inputValue}
                     onChange={onChange}
                 />
                 <button
                     onClick={handleSearch}
-                    className=" bg-slate-300 hover:bg-slate-500 rounded-lg ml-10 px-2 py-1"
+                    className=" bg-slate-300 hover:bg-slate-400 rounded-lg px-2 py-1 absolute right-1 top-1.5"
                 >
                     검색
                 </button>

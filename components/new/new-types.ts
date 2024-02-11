@@ -1,4 +1,4 @@
-import { locationJSON } from '@/config/data';
+import { locationJSON, subCategories } from '@/config/data';
 import { ControllerRenderProps } from 'react-hook-form';
 
 export interface MyFiledValues {
@@ -19,6 +19,6 @@ export interface EditorProvideProps {
     field: ControllerRenderProps<MyFiledValues, 'content'>;
 }
 
-export type CategoryType = 'crew' | 'market' | 'community' | 'review';
+export type CategoryType = keyof typeof subCategories;
 
 export type CityType = keyof typeof locationJSON;

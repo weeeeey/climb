@@ -1,3 +1,4 @@
+'use client';
 import {
     FormControl,
     FormField,
@@ -16,6 +17,7 @@ import { Control, ControllerRenderProps } from 'react-hook-form';
 import { CategoryType, MyFiledValues } from './new-types';
 import { subCategories } from '@/config/data';
 import { TypeMapBody } from './map/type-map-body';
+import { useEffect, useState } from 'react';
 
 interface NewSelectProps {
     control: Control<MyFiledValues>;
@@ -28,8 +30,15 @@ export const NewSubSelect = ({
     selectedCate,
     control,
 }: NewSelectProps) => {
+    const [subCate, setSubCate] = useState<string[]>();
+    useEffect(() => {
+        if (selectedCate) {
+            setSubCate(subCategories[selectedCate as CategoryType]);
+        }
+    }, [selectedCate]);
+
     return (
-        <div className="space-y-12">
+        <div className="space-y-12 w-1/2">
             <FormItem>
                 <FormLabel> 게시판</FormLabel>
                 <Select
@@ -42,7 +51,7 @@ export const NewSubSelect = ({
                         </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                        {subCategories[selectedCate].map((c, idx) => (
+                        {subCate?.map((c, idx) => (
                             <SelectItem key={idx} value={c}>
                                 {c}
                             </SelectItem>
