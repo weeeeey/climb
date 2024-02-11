@@ -29,7 +29,7 @@ export const NewCategorySelect = ({ field, control }: NewSelectProps) => {
 
     useEffect(() => {
         setSelectedCate(field.value as CategoryType);
-    }, [field.value]);
+    }, [field]);
 
     return (
         <>

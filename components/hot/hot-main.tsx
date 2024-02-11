@@ -27,7 +27,7 @@ export const HotMain = ({
     likeArray,
 }: HotMainProps) => {
     return (
-        <Carousel className="w-full overflow-x-auto">
+        <>
             <div
                 className={cn(
                     'text-xl flex justify-start items-center',
@@ -44,23 +44,31 @@ export const HotMain = ({
                 </Link>
             </div>
 
-            <CarouselContent>
-                {posts.map((post: SafePost) => (
-                    <CarouselItem
-                        key={post.id}
-                        className="basis-1/2 md:basis-1/3 lg:basis-1/4"
-                    >
-                        <HotCard
-                            post={post}
-                            subCategory={subCategory}
-                            likeArray={likeArray}
-                        />
-                    </CarouselItem>
-                ))}
-            </CarouselContent>
+            <Carousel
+                className="w-full "
+                opts={{
+                    align: 'start',
+                    loop: true,
+                }}
+            >
+                <CarouselContent>
+                    {posts.map((post: SafePost) => (
+                        <CarouselItem
+                            key={post.id}
+                            className="basis-1/2  xl:basis-1/4"
+                        >
+                            <HotCard
+                                post={post}
+                                subCategory={subCategory}
+                                likeArray={likeArray}
+                            />
+                        </CarouselItem>
+                    ))}
+                </CarouselContent>
 
-            <CarouselPrevious className="ml-2" />
-            <CarouselNext className="mr-2 " />
-        </Carousel>
+                <CarouselPrevious className="" />
+                <CarouselNext className="" />
+            </Carousel>
+        </>
     );
 };

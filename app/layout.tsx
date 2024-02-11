@@ -10,6 +10,7 @@ import ToasterProvider from '@/provider/toast-provider';
 import Script from 'next/script';
 import { FooterBody } from '@/components/footer/footer-body';
 import { Billboard } from '@/components/hot/hot-billboard';
+import { ModalProvider } from '@/provider/modal-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -37,14 +38,16 @@ export default function RootLayout({
             <ClerkProvider>
                 <html lang="en">
                     <body className={inter.className}>
+                        <ModalProvider />
                         <ToasterProvider />
                         <NavBar />
-                        <Billboard />
+
                         <Script
                             src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_APPKEY}&libraries=services,clusterer&autoload=false`}
                             strategy="beforeInteractive"
                         />
-                        <main className="px-10 sm:px-20 pt-5 pb-20">
+                        <Billboard />
+                        <main className="px-5 sm:px-20 pt-5 pb-20 mt-20">
                             {children}
                         </main>
                         <TopButton />

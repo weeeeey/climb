@@ -24,7 +24,7 @@ export const CardHeaderComponent = ({
             </CardTitle>
             <div className="text-sm">
                 {(city || place) && (
-                    <div className="flex justify-between sm:items-center text-nowrap sm:flex-row flex-col items-start ">
+                    <div className="flex justify-between text-nowrap  flex-col items-start ">
                         <CardDescription>
                             {city} {gu}
                         </CardDescription>
