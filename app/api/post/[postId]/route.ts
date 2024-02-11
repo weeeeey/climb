@@ -29,28 +29,6 @@ export async function GET(
                         id: true,
                     },
                 },
-                comments: {
-                    include: {
-                        profile: {
-                            select: {
-                                name: true,
-                                imageUrl: true,
-                                createdAt: true,
-                            },
-                        },
-                        replyComments: {
-                            include: {
-                                profile: {
-                                    select: {
-                                        name: true,
-                                        imageUrl: true,
-                                        createdAt: true,
-                                    },
-                                },
-                            },
-                        },
-                    },
-                },
             },
         });
         if (!post) {

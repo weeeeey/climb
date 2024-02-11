@@ -4,7 +4,7 @@ import { fetchFn } from '@/action/get-content';
 import { useQuery } from '@tanstack/react-query';
 
 interface UseQueryContentProps {
-    cType: 'post' | 'subCategory' | 'hot';
+    cType: 'post' | 'subCategory' | 'hot' | 'comment';
     id: string;
     selectedPage?: number;
 }
@@ -15,7 +15,6 @@ export const useQueryContent = ({
     selectedPage,
 }: UseQueryContentProps) => {
     const key = selectedPage ? [cType, id, selectedPage] : [cType, id];
-
     const { data, isError, isLoading } = useQuery({
         queryKey: key,
         queryFn: async () => {

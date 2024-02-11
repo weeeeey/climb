@@ -80,7 +80,6 @@ export const PostBody = ({ postId, loginedProfile }: PostBodyProps) => {
             <CommentBody
                 loginedProfile={loginedProfile}
                 postId={postId}
-                comments={post.comments}
                 formRef={commentFormRef}
             />
         </div>

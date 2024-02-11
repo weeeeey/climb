@@ -119,8 +119,8 @@ export const NewBody = ({
                 },
             });
             if (res.status === 200) {
-                router.refresh();
                 toast.success('Success');
+                router.refresh();
                 router.push(`/post/${res.data}`);
             }
         } catch (error) {

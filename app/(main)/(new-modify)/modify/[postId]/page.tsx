@@ -2,9 +2,7 @@ import currentProfile from '@/action/current-profile';
 import { ErrorPage } from '@/components/error';
 import { NewBody } from '@/components/new/new-body';
 import { db } from '@/lib/db';
-import { redirect } from 'next/navigation';
 import React from 'react';
-import toast from 'react-hot-toast';
 
 const ModifyPage = async ({ params }: { params: { postId: string } }) => {
     const curProfile = await currentProfile();

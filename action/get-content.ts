@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 interface fetchFnProps {
-    cType: 'post' | 'subCategory' | 'hot';
+    cType: 'post' | 'subCategory' | 'hot' | 'comment';
     id: string;
     selectedPage?: number;
 }

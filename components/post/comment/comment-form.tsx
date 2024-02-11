@@ -10,60 +10,29 @@ import {
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Profile } from '@prisma/client';
-import React, { MutableRefObject, RefObject, useState } from 'react';
+import React, { RefObject, useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { UseFormReturn, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
 interface CommentFormProps {
-    loginedProfile: Profile | undefined;
-    postId: string;
     formRef: RefObject<HTMLTextAreaElement>;
+    form: UseFormReturn<{
+        comment: string;
+    }>;
+    isDisable: boolean;
+    onSubmit: (data: { comment: string }) => void;
 }
 
-const FormSchema = z.object({
-    comment: z
-        .string()
-        .min(3, {
-            message: '3자 이상 적어주세요',
-        })
-        .max(200, {
-            message: '200자 이내로 적어주세요',
-        }),
-});
-
 export const CommentForm = ({
-    postId,
-    loginedProfile,
     formRef,
+    form,
+    isDisable,
+    onSubmit,
 }: CommentFormProps) => {
-    const [isDisabled, setisDisabled] = useState(
-        loginedProfile?.id ? false : true
-    );
-
-    const form = useForm<z.infer<typeof FormSchema>>({
-        resolver: zodResolver(FormSchema),
-    });
-
-    async function onSubmit(data: z.infer<typeof FormSchema>) {
-        try {
-            await axios({
-                method: 'POST',
-                url: `/api/comment`,
-                data: {
-                    postId,
-                    text: data.comment,
-                    profileId: loginedProfile!.id,
-                },
-            });
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     return (
         <Form {...form}>
             <form
@@ -81,11 +50,11 @@ export const CommentForm = ({
                                     onChange={field.onChange}
                                     value={field.value}
                                     ref={formRef}
-                                    disabled={isDisabled}
+                                    disabled={isDisable}
                                     placeholder={
-                                        isDisabled
+                                        isDisable
                                             ? '로그인 해주세요.'
-                                            : 'Type your message here.'
+                                            : '댓글은 자신의 얼굴!'
                                     }
                                 />
                             </FormControl>
@@ -95,7 +64,7 @@ export const CommentForm = ({
                 />
                 <Button
                     type="submit"
-                    disabled={isDisabled}
+                    disabled={isDisable}
                     className="md:h-full"
                 >
                     등록
