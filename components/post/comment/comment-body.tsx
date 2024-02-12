@@ -107,7 +107,7 @@ export const CommentBody = ({
             <CommentForm
                 form={form}
                 formRef={formRef}
-                isDisable={isDisabled}
+                loginId={loginedProfile?.id}
                 onSubmit={onSubmit}
             />
         </>

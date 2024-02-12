@@ -14,23 +14,24 @@ import { CategoryType } from '../new/new-types';
 import { subCategories } from '@/config/data';
 
 interface NavItemProps {
-    url: string;
     title: string;
 }
 
-export const NavItem = ({ title, url }: NavItemProps) => {
+export const NavItem = ({ title }: NavItemProps) => {
     const pathName = usePathname();
     const router = useRouter();
     const [subCates, setsubCates] = useState<string[]>();
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     useEffect(() => {
-        if (url) {
-            setsubCates(subCategories[url as CategoryType]);
+        if (title.toLocaleLowerCase()) {
+            setsubCates(
+                subCategories[title.toLocaleLowerCase() as CategoryType]
+            );
         }
-    }, [url]);
+    }, [title]);
     const handleClick = (sub: string = '') => {
-        router.push(`/${url}/${sub}`);
+        router.push(`/${title.toLocaleLowerCase()}/${sub}`);
     };
 
     return (
@@ -39,7 +40,7 @@ export const NavItem = ({ title, url }: NavItemProps) => {
                 onClick={() => setIsMenuOpen(true)}
                 className={cn(
                     'text-xl md:text-2xl outline-none ',
-                    selectedFont(url, pathName)
+                    selectedFont(title.toLocaleLowerCase(), pathName)
                 )}
             >
                 {title}

@@ -9,7 +9,7 @@ import {
 
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import React, { RefObject } from 'react';
+import React, { RefObject, useEffect, useState } from 'react';
 
 import { UseFormReturn } from 'react-hook-form';
 import { useModalStore } from '@/lib/use-modal';
@@ -19,16 +19,33 @@ interface CommentFormProps {
     form: UseFormReturn<{
         comment: string;
     }>;
-    isDisable: boolean;
     onSubmit: (data: { comment: string }) => void;
+    loginId: string | undefined;
 }
 
 export const CommentForm = ({
     formRef,
     form,
-    isDisable,
     onSubmit,
+    loginId,
 }: CommentFormProps) => {
+    const [isDisabled, setIsDisabled] = useState(true);
+    useEffect(() => {
+        if (loginId) {
+            setIsDisabled(false);
+        } else {
+            setIsDisabled(true);
+        }
+    }, [loginId]);
+
+    const { onOpen } = useModalStore();
+    const openSignModla = () => {
+        if (!isDisabled) {
+            return;
+        }
+        setIsDisabled(true);
+        onOpen();
+    };
     return (
         <Form {...form}>
             <form
@@ -46,9 +63,9 @@ export const CommentForm = ({
                                     onChange={field.onChange}
                                     value={field.value}
                                     ref={formRef}
-                                    disabled={isDisable}
+                                    onClick={openSignModla}
                                     placeholder={
-                                        isDisable
+                                        isDisabled
                                             ? '로그인 해주세요.'
                                             : '댓글은 자신의 얼굴!'
                                     }
@@ -60,7 +77,7 @@ export const CommentForm = ({
                 />
                 <Button
                     type="submit"
-                    disabled={isDisable}
+                    disabled={isDisabled}
                     className="md:h-full"
                 >
                     등록
