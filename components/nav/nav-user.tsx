@@ -1,23 +1,18 @@
-import { navFont } from '@/font.config';
-import { cn } from '@/lib/utils';
+'use client';
 import { UserButton } from '@clerk/nextjs';
-import Link from 'next/link';
 import React from 'react';
+import { NavGuest } from './nav-guest';
+import { usePathname } from 'next/navigation';
 
 interface NavUserProps {
     isLogin: boolean;
 }
 
 export const NavUser = ({ isLogin }: NavUserProps) => {
+    const pathname = usePathname();
     if (isLogin) {
-        return <UserButton />;
+        return <UserButton afterSignOutUrl={pathname} />;
+    } else {
+        return <NavGuest />;
     }
-    return (
-        <Link
-            href="/sign-in"
-            className={cn('text-base sm:text-2xl', navFont.className)}
-        >
-            Login
-        </Link>
-    );
 };

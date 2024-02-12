@@ -38,7 +38,7 @@ export const NavItem = ({ title, url }: NavItemProps) => {
             <DropdownMenuTrigger
                 onClick={() => setIsMenuOpen(true)}
                 className={cn(
-                    'text-base sm:text-2xl outline-none ',
+                    'text-xl md:text-2xl outline-none ',
                     selectedFont(url, pathName)
                 )}
             >

@@ -12,6 +12,7 @@ import { Textarea } from '@/components/ui/textarea';
 import React, { RefObject } from 'react';
 
 import { UseFormReturn } from 'react-hook-form';
+import { useModalStore } from '@/lib/use-modal';
 
 interface CommentFormProps {
     formRef: RefObject<HTMLTextAreaElement>;

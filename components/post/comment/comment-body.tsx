@@ -89,7 +89,7 @@ export const CommentBody = ({
             }
         } catch (error) {
             console.log(error);
-            toast.error('댓글 등록 실패 ㅠㅠ');
+            toast.error('댓글 등록 실패 ㅠㅠ 로그인을 유지 해주세요');
         } finally {
             setisDisabled(false);
         }
