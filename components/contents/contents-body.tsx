@@ -19,12 +19,11 @@ export const ContentsBody = ({
     likesArray,
     category,
 }: Omit<ContentsBodyProps, 'posts' | '_count'>) => {
-    const searchParam = useSearchParams();
-
     const [boardTitle, setBoardTitle] = useState<string>();
     const [selectedPage, setSelectedPage] = useState<number>(1);
     const [postCout, setpostCout] = useState<number>(1);
 
+    const searchParam = useSearchParams();
     const { data, isError, isLoading } = useQueryContent({
         cType: 'subCategory',
         id: subCategory,
