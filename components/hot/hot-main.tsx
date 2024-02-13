@@ -45,7 +45,7 @@ export const HotMain = ({
             </div>
 
             <Carousel
-                className="w-full "
+                className="w-full px-5 sm:px-0 "
                 opts={{
                     align: 'start',
                     loop: true,
@@ -55,7 +55,7 @@ export const HotMain = ({
                     {posts.map((post: SafePost) => (
                         <CarouselItem
                             key={post.id}
-                            className="basis-1/2  xl:basis-1/4"
+                            className="basis-1/2 md:basis-1/3  xl:basis-1/4"
                         >
                             <HotCard
                                 post={post}
@@ -66,8 +66,8 @@ export const HotMain = ({
                     ))}
                 </CarouselContent>
 
-                <CarouselPrevious className="" />
-                <CarouselNext className="" />
+                <CarouselPrevious className="ml-7 sm:ml-0" />
+                <CarouselNext className="mr-7 sm:mr-0" />
             </Carousel>
         </>
     );

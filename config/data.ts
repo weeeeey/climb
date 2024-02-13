@@ -8,7 +8,7 @@ export const subCategories = {
 };
 export const navCategory = ['Crew', 'Community', 'Review', 'Market'];
 export const navSubCategory = [
-    ['번개 모임 ', '크루 모집 ', '크루 홍보 '],
+    ['크루 모집 ', '크루 홍보 ', '번개 모임 '],
     ['클라이밍 팁 ', '정보 공유 ', '유머 ', '분실물'],
     ['장소 후기 ', '장비 후기 '],
     [''],

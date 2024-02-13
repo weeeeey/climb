@@ -10,7 +10,7 @@ import {
 import { boardTitleFont, navFont } from '@/font.config';
 import { cn } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export function NavMain() {
     const [isOpen, setIsOpen] = useState(false);
@@ -18,12 +18,13 @@ export function NavMain() {
     const router = useRouter();
 
     const handleClick = (sub: string) => {
-        const cate = Object.entries(navDummy).find(([key, values]) =>
+        const cate = Object.entries(navDummy).find(([_, values]) =>
             values.includes(sub)
         );
         const subEn = Object.entries(subCategoryKor).find(
-            ([key, value]) => value === sub
+            ([_, value]) => value === sub
         );
+
         if (cate && subEn) {
             setIsOpen(false);
             router.push(`/${cate[0]}/${subEn[0]}`);
@@ -38,13 +39,15 @@ export function NavMain() {
                 )}
             >
                 {navCategory.map((c) => (
-                    <div key={c} className="cursor-pointer px-3 ">
+                    <div key={c} className=" group cursor-pointer px-3 ">
                         {c}
+                        <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-sky-400"></span>
                     </div>
                 ))}
             </SheetTrigger>
-            <SheetContent side="top" className="top-16 outline-none ">
-                <div className="flex justify-center items-start gap-4  space-x-12 ">
+
+            <SheetContent side="top" className=" outline-none   ">
+                <div className="flex  justify-center items-start gap-4  space-x-12 ">
                     {navSubCategory.map((items, idx) => (
                         <div
                             key={idx}
@@ -57,9 +60,10 @@ export function NavMain() {
                                 <div
                                     key={item}
                                     onClick={() => handleClick(item)}
-                                    className="cursor-pointer"
+                                    className="cursor-pointer group inline-block"
                                 >
                                     {item}
+                                    <span className="group-hover:max-w-full block max-w-0 transition-all duration-300 h-0.5 bg-red-300 "></span>
                                 </div>
                             ))}
                         </div>
