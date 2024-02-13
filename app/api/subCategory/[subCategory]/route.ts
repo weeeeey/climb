@@ -9,6 +9,7 @@ export async function GET(
         const { subCategory } = params;
         const url = new URL(req.url);
         const selectedPage = url.searchParams.get('selectedPage');
+        const searchTitle = url.searchParams.get('searchTitle');
 
         if (
             subCategory.length === 0 ||
@@ -24,14 +25,14 @@ export async function GET(
             },
 
             select: {
-                _count: {
-                    select: {
-                        posts: true,
-                    },
-                },
                 posts: {
-                    take: 10,
-                    skip: 10 * (parseInt(selectedPage) - 1),
+                    where: {
+                        title: searchTitle
+                            ? { contains: searchTitle }
+                            : undefined,
+                    },
+                    take: 13,
+                    skip: 13 * (parseInt(selectedPage) - 1),
 
                     orderBy: {
                         createdAt: 'desc',
@@ -59,7 +60,19 @@ export async function GET(
                 },
             },
         });
-        return NextResponse.json(res);
+        const postCounts = await db.post.aggregate({
+            where: {
+                subCategory: {
+                    name: subCategory,
+                },
+                title: searchTitle ? { contains: searchTitle } : undefined,
+            },
+            _count: true,
+        });
+        return NextResponse.json({
+            posts: res?.posts,
+            postCounts: postCounts._count,
+        });
     } catch (error) {
         console.log(error);
         return new NextResponse('internal error', { status: 500 });

@@ -10,27 +10,41 @@ import { ErrorPage } from '../error';
 import { useEffect, useState } from 'react';
 import { subCategoryKor } from '@/config/data';
 import { PagiBody } from './pagination/pagi-body';
-import { NewRouterBtn } from '../new/new-routerBtn';
 import { ContentsTitle } from './contents-title';
+import { SearchBody } from '../search/search-body';
+import { useSearchParams } from 'next/navigation';
 
 export const ContentsBody = ({
     subCategory,
     likesArray,
     category,
 }: Omit<ContentsBodyProps, 'posts' | '_count'>) => {
+    const searchParam = useSearchParams();
+
     const [boardTitle, setBoardTitle] = useState<string>();
-
     const [selectedPage, setSelectedPage] = useState<number>(1);
-
-    useEffect(() => {
-        setBoardTitle(subCategoryKor[subCategory as subCategoryKorType]);
-    }, [subCategory]);
+    const [postCout, setpostCout] = useState<number>(1);
 
     const { data, isError, isLoading } = useQueryContent({
         cType: 'subCategory',
         id: subCategory,
         selectedPage,
+        searchTitle: searchParam.get('title') || undefined,
     });
+
+    useEffect(() => {
+        setBoardTitle(subCategoryKor[subCategory as subCategoryKorType]);
+    }, [subCategory]);
+
+    useEffect(() => {
+        setSelectedPage(1);
+    }, [searchParam]);
+
+    useEffect(() => {
+        if (data) {
+            setpostCout(data.postCounts);
+        }
+    }, [data]);
 
     if (isLoading) {
         return <Loading />;
@@ -62,9 +76,9 @@ export const ContentsBody = ({
                 <ContentsHead />
                 <ContentsRows posts={data.posts} likesArray={likesArray} />
             </Table>
-            <NewRouterBtn category={category} subCategory={subCategory} />
+            <SearchBody category={category} subCategory={subCategory} />
             <PagiBody
-                postsCount={data._count.posts}
+                postsCount={postCout}
                 movePage={movePage}
                 nextPage={nextPage}
                 previousPage={prevousPage}

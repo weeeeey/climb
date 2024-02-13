@@ -7,18 +7,22 @@ interface UseQueryContentProps {
     cType: 'post' | 'subCategory' | 'hot' | 'comment';
     id: string;
     selectedPage?: number;
+    searchTitle?: string;
 }
 
 export const useQueryContent = ({
     cType,
     id,
     selectedPage,
+    searchTitle,
 }: UseQueryContentProps) => {
-    const key = selectedPage ? [cType, id, selectedPage] : [cType, id];
+    const key = selectedPage
+        ? [cType, id, selectedPage, searchTitle]
+        : [cType, id];
     const { data, isError, isLoading } = useQuery({
         queryKey: key,
         queryFn: async () => {
-            const res = await fetchFn({ id, cType, selectedPage });
+            const res = await fetchFn({ id, cType, selectedPage, searchTitle });
             return res;
         },
     });
