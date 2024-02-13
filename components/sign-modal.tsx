@@ -5,7 +5,7 @@ import { Logo } from './ui/logo';
 import { SignIn } from '@clerk/nextjs';
 import { usePathname } from 'next/navigation';
 
-export function MapModal() {
+export function SignModal() {
     const { isOpen, onOpenClose } = useModalStore();
     const pathname = usePathname();
 
@@ -15,7 +15,7 @@ export function MapModal() {
 
     return (
         <Dialog open={isOpen} onOpenChange={onOpenClose}>
-            <DialogContent className="max-w-2xl mx-auto flex flex-col items-center justify-center py-20">
+            <DialogContent className="max-w-2xl mx-auto flex flex-col items-center justify-center py-10 md:py-20">
                 <DialogHeader>
                     <Logo />
                 </DialogHeader>

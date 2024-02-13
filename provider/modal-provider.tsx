@@ -1,6 +1,6 @@
 'use client';
 
-import { MapModal } from '@/components/map-modal';
+import { SignModal } from '@/components/sign-modal';
 import { useEffect, useState } from 'react';
 
 export const ModalProvider = () => {
@@ -13,5 +13,5 @@ export const ModalProvider = () => {
         return;
     }
 
-    return <MapModal />;
+    return <SignModal />;
 };
