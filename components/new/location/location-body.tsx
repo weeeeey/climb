@@ -25,15 +25,13 @@ export const LocationBody = ({ control }: LocationBodyProps) => {
                     <LocationCity field={field} onCityChange={onCityChange} />
                 )}
             />
-            {selectedCity !== '시/도 선택' && (
-                <FormField
-                    control={control}
-                    name="gu"
-                    render={({ field }) => (
-                        <LocationGu field={field} selectedCity={selectedCity} />
-                    )}
-                />
-            )}
+            <FormField
+                control={control}
+                name="gu"
+                render={({ field }) => (
+                    <LocationGu field={field} selectedCity={selectedCity} />
+                )}
+            />
             <FormField
                 control={control}
                 name="location"

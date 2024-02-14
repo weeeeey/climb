@@ -38,7 +38,7 @@ export const NewSubSelect = ({
     }, [selectedCate]);
 
     return (
-        <div className="space-y-12 w-1/2">
+        <div className="space-y-12  sm:w-1/2">
             <FormItem>
                 <FormLabel> 게시판</FormLabel>
                 <Select

@@ -33,7 +33,7 @@ export const NewCategorySelect = ({ field, control }: NewSelectProps) => {
 
     return (
         <>
-            <FormItem className="w-1/2">
+            <FormItem className="sm:w-1/2">
                 <FormLabel>카테고리</FormLabel>
                 <Select
                     onValueChange={field.onChange}

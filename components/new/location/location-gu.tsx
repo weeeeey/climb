@@ -28,7 +28,7 @@ export const LocationGu = ({ field, selectedCity }: LocationProps) => {
     return (
         <>
             {gues && (
-                <FormItem className="w-1/2">
+                <FormItem className="sm:w-1/2">
                     <FormLabel>지역</FormLabel>
                     <Select onValueChange={field.onChange}>
                         <FormControl>
