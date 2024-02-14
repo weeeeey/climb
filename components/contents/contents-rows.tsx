@@ -24,12 +24,20 @@ export const ContentsRows = ({
                     className="cursor-pointer"
                 >
                     <TableCell>
-                        <div className="text-lg">{post.title}</div>
+                        <div className="text-sm sm:text-lg flex items-center">
+                            <span className="text-nowrap overflow-hidden">
+                                {post.title.slice(0, 15)}
+                                {post.title.length >= 15 && '...'}
+                            </span>
+                            <span className="text-slate-400 text-sm">
+                                [{post._count.comments}]
+                            </span>
+                        </div>
                         <div className="text-xs text-slate-400">
                             {post.profile.name}
                         </div>
                     </TableCell>
-                    <TableCell className="flex items-center justify-between space-x-4 mt-3">
+                    <TableCell className="flex sm:flex-row flex-col  items-end sm:items-center justify-between space-x-3 mt-3">
                         <div className="flex justify-center items-center space-x-1">
                             <Heart
                                 className={cn(
@@ -40,10 +48,7 @@ export const ContentsRows = ({
                             />
                             <div>{post.like}</div>
                         </div>
-                        <div className="flex justify-center items-center  space-x-1">
-                            <MessageCircle className="w-4 h-4 " />
-                            <div>{post._count.comments}</div>
-                        </div>
+
                         <div className="flex justify-center items-center  space-x-1">
                             <Eye className="w-4 h-4 " />
                             <div>{post.viewed}</div>
