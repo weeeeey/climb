@@ -15,7 +15,7 @@ export function SignModal() {
 
     return (
         <Dialog open={isOpen} onOpenChange={onOpenClose}>
-            <DialogContent className="max-w-2xl mx-auto flex flex-col items-center justify-center py-10 md:py-20">
+            <DialogContent className=" max-w-2xl mx-auto flex flex-col items-center justify-center py-10 md:py-20">
                 <DialogHeader>
                     <Logo />
                 </DialogHeader>

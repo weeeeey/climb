@@ -10,9 +10,14 @@ const font = Poppins({
 
 export const Logo = () => {
     return (
-        <div className="flex flex-col items-center mb-10 md:mb-20">
+        <div className="flex flex-col items-center mb-0 xs:mb-10 md:mb-20">
             <div className={cn('flex flex-col items-center', font.className)}>
-                <p className={cn('text-8xl font-semibold', navFont.className)}>
+                <p
+                    className={cn(
+                        'text-4xl xs:text-6xl md:text-8xl font-semibold',
+                        navFont.className
+                    )}
+                >
                     <span className="text-red-500">W</span>e{' '}
                     <span className="text-red-500">C</span>limber
                 </p>

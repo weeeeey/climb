@@ -11,7 +11,7 @@ import Autoplay from 'embla-carousel-autoplay';
 
 export const Billboard = () => {
     return (
-        <div className="w-full h-60  sm:px-20 lg:px-40 md:my-5 flex justify-center items-center mt-32  ">
+        <div className="w-full h-60 px-16 md:px-40 md:my-5 flex justify-center items-center mt-32  ">
             <Carousel
                 opts={{
                     loop: true,

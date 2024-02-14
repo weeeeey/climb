@@ -18,6 +18,10 @@ const config = {
             },
         },
         extend: {
+            screens: {
+                '2xs': '300px',
+                xs: '500px', // Mobile (iPhone 3 - iPhone XS Max).
+            },
             colors: {
                 border: 'hsl(var(--border))',
                 input: 'hsl(var(--input))',

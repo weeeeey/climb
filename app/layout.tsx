@@ -47,7 +47,7 @@ export default function RootLayout({
                             strategy="beforeInteractive"
                         />
                         <Billboard />
-                        <main className="px-5 sm:px-20 pt-5 pb-20 mt-20">
+                        <main className="px-5 md:px-20  pt-5 pb-20 mt-20">
                             {children}
                         </main>
                         <TopButton />
