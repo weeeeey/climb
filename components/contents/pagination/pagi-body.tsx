@@ -30,7 +30,7 @@ export function PagiBody({
 
     useEffect(() => {
         const pagesArray = Array.from(
-            { length: Math.ceil(postsCount / 13) },
+            { length: Math.ceil(postsCount / 12) },
             (_, index) => index + 1
         );
         setTotalPage(pagesArray);

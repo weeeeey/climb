@@ -1,14 +1,17 @@
 import { boardTitleFont } from '@/font.config';
 import { cn } from '@/lib/utils';
-import React from 'react';
+import React, { RefObject } from 'react';
 
 export const ContentsTitle = ({
     boardTitle,
+    titleRef,
 }: {
     boardTitle: string | undefined;
+    titleRef: RefObject<HTMLDivElement>;
 }) => {
     return (
         <div
+            ref={titleRef}
             className={cn(
                 ' bg-red-100 rounded-lg flex justify-start   items-center  text-2xl px-3 py-1 ',
                 boardTitleFont.className

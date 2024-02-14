@@ -25,9 +25,15 @@ export const ContentsRows = ({
                 >
                     <TableCell>
                         <div className="text-sm sm:text-lg flex items-center">
-                            <span className="text-nowrap overflow-hidden">
-                                {post.title.slice(0, 15)}
-                                {post.title.length >= 15 && '...'}
+                            <span
+                                className={cn(
+                                    'text-nowrap overflow-hidden',
+                                    post.title.length >= 15 && 'truncate'
+                                )}
+                            >
+                                {post.title.length >= 15
+                                    ? post.title.slice(0, 15) + '...'
+                                    : post.title}
                             </span>
                             <span className="text-slate-400 text-sm">
                                 [{post._count.comments}]

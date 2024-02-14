@@ -31,8 +31,8 @@ export async function GET(
                             ? { contains: searchTitle }
                             : undefined,
                     },
-                    take: 13,
-                    skip: 13 * (parseInt(selectedPage) - 1),
+                    take: 12,
+                    skip: 12 * (parseInt(selectedPage) - 1),
 
                     orderBy: {
                         createdAt: 'desc',
