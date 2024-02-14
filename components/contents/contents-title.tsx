@@ -7,7 +7,7 @@ export const ContentsTitle = ({
     titleRef,
 }: {
     boardTitle: string | undefined;
-    titleRef: RefObject<HTMLDivElement>;
+    titleRef?: RefObject<HTMLDivElement>;
 }) => {
     return (
         <div
