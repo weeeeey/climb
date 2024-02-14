@@ -2,35 +2,49 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, set ".env" file in root dir:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY =
+CLERK_SECRET_KEY =
+
+//prisma
+DATABASE_URL =
+
+//kakao map
+NEXT_PUBLIC_APPKEY;
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Second, install node_module and then set prima
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+npx prisma db push
 
-## Learn More
+npx prisma generate
 
-To learn more about Next.js, take a look at the following resources:
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Finally, run development server
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+npm run dev
+```
+
+## used Skills
+
+Front/Back : Next.js 14.1
+Prisma : MongoDB
+UI Library: shadcn/ui
+Auth : clerk
+HTTP : axios
+State Management: React-Query / zustand
+External Library: Kakao.maps
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+link: https://climb-tawny.vercel.app/
+git repo: https://github.com/weeeeey/climb
