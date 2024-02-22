@@ -22,9 +22,9 @@ Second, install node_module and then set prima
 ```
 npm install
 
+npx prisma generate
 npx prisma db push
 
-npx prisma generate
 
 ```
 
@@ -36,13 +36,13 @@ npm run dev
 
 ## used Skills
 
-Front/Back : Next.js 14.1
-Prisma : MongoDB
-UI Library: shadcn/ui
-Auth : clerk
-HTTP : axios
-State Management: React-Query / zustand
-External Library: Kakao.maps
+-   Front/Back : Next.js 14.1
+-   Prisma : MongoDB
+-   UI Library: shadcn/ui
+-   Auth : clerk
+-   HTTP : axios
+-   State Management: React-Query / zustand
+-   External Library: Kakao.maps
 
 ## Deploy on Vercel
 
